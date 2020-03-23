@@ -52,9 +52,13 @@ app.use('/api/members',require('./routes/api/members'));
 //Ruta para manejo de memes
 app.use('/api/imagenes',require('./routes/api/imagenes'));
 
+//Pubic directory
+app.use('/', express.static(path.join(__dirname,'public')));
+
 const PORT = process.env.PORT || 5000;
 
 
 app.listen(PORT, () => {
+    console.log(path.join(__dirname,'public'));
     console.log('Server started on port: ' + PORT);
 });
