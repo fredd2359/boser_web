@@ -33,6 +33,7 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
+//Se comienzan las rutas de front principales
 app.get('/',(req,res) => {
     console.log(__dirname);
     res.render('index', {
@@ -41,14 +42,15 @@ app.get('/',(req,res) => {
     });
 });
 
-app.get('/hola',(req,res) => {
-    res.render('prueba');
-});
+app.get('/login',(req,res) => {
+    res.render('login-view', {layout: 'admin'});
+})
 
-//app.use(express.static(path.join(__dirname,'public')));
-
+//Rutas para api
 //Members API site www.bosersalseo.com/api/members/
 app.use('/api/members',require('./routes/api/members'));
+//Ruta para manejo de usuarios
+app.use('/user/',require('./routes/api/usuario'));
 //Ruta para manejo de memes
 app.use('/api/imagenes',require('./routes/api/imagenes'));
 
@@ -57,8 +59,6 @@ app.use('/', express.static(path.join(__dirname,'public')));
 
 const PORT = process.env.PORT || 5000;
 
-
 app.listen(PORT, () => {
-    console.log(path.join(__dirname,'public'));
     console.log('Server started on port: ' + PORT);
 });
