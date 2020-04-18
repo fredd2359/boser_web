@@ -12,11 +12,19 @@ mongoose.connect(process.env.MONGODB_URI, {
     useUnifiedTopology: true
 });
 
+
 //Borrar
 const members = require('./Members');
 
 const app = express();
-
+//Se activa cors
+app.use(function(req, res, next) {
+    console.log("Activando cors");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    //console.log(res);
+    next();
+});
 //Init Middleware
 //app.use(logger);
 
@@ -33,6 +41,8 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
+
+
 //Se comienzan las rutas de front principales
 app.get('/',(req,res) => {
     console.log(__dirname);
@@ -43,7 +53,10 @@ app.get('/',(req,res) => {
 });
 
 app.get('/login',(req,res) => {
-    res.render('login-view', {layout: 'admin'});
+    console.log("alv se mete aqui");
+    res.render('login-view', {
+        layout: 'admin'
+    });
 })
 
 //Rutas para api
