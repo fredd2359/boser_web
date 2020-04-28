@@ -113,14 +113,10 @@ router.post('/login', (req,res,next) => {
                             expiresIn : "2h"
                         }
                     );
-                    res.render('prueba', {
-                        layout: 'admin',
+                    return res.status(201).json({
+                        message: "Login exitoso",
                         token
-                    });
-                    // return res.status(201).json({
-                    //     message: "Login exitoso",
-                    //     token
-                    // }); 
+                       }); 
                 }
                 return res.status(401).json({
                     message: "El nombre del usuario o la contraseña no son correctos."

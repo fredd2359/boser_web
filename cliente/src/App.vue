@@ -1,8 +1,17 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+  <!-- <div id="app"> -->
+    <v-app>
+      <v-content>
+        <!-- TODO: Implementar Bara de navegacion -->
+        <!-- <page-header /> -->
+        <v-container>
+          <router-view/>
+        </v-container>
+      </v-content>
+    </v-app>
+    <!-- <img src="./assets/logo.png"> -->
+    <!-- <router-view/> -->
+  <!-- </div> -->
 </template>
 
 <script>

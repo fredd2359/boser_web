@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const logger = require('./middleware/logger');
 const assert = require('assert');
 const mongoose = require('mongoose');
+const cors = require('cors');
 require ('dotenv').config();
 
 //Se conecta a base de datos MongoDB Atlas
@@ -18,13 +19,13 @@ const members = require('./Members');
 
 const app = express();
 //Se activa cors
-app.use(function(req, res, next) {
-    console.log("Activando cors");
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    //console.log(res);
-    next();
-});
+// app.use(function(req, res, next) {
+//     console.log("Activando cors");
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     //console.log(res);
+//     next();
+// });
 //Init Middleware
 //app.use(logger);
 
@@ -41,6 +42,7 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
+app.use(cors());
 
 
 //Se comienzan las rutas de front principales
