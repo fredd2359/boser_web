@@ -26,11 +26,11 @@ router.get('/',check_auth, (req,res, next) => {
                     }
                 })
             };
-            res.status(200).json(response);
+            return res.status(200).json(response);
         }
     ).catch(err => {
         console.log("Error al consultar usuarios: " +  err);
-        res.status(500).json({error: err});
+        return res.status(500).json({error: err});
     });
 });
 
@@ -65,14 +65,14 @@ router.post('/signup', (req, res, next) => {
                         user
                             .save()
                             .then( result => {
-                                res.status(201).json({
+                                return res.status(201).json({
                                     message: "Usuario creado"
                                 });
                             })
                             .catch( err => {
                                 console.log(err);
                                 console.log("Entra error de usuario creado");
-                                res.status(500).json( { 
+                                return res.status(500).json( { 
                                     error: err 
                                 });
                             });
@@ -80,12 +80,12 @@ router.post('/signup', (req, res, next) => {
                 })
             }
         }).catch(err => {
-            res.status(500).json({ message: "Algo inesperado ha pasado"});
+            return res.status(500).json({ message: "Algo inesperado ha pasado"});
         });
 });
 
 router.post('/login', (req,res,next) => {
-    console.log("Entra en el servidor la petición   ");
+    console.log("Entra en el servidor la petición user:" + req.body.user);
     Usuario.find({user : req.body.user})
         .exec()
         .then( usuario => {

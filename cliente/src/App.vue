@@ -1,17 +1,17 @@
 <template>
-  <!-- <div id="app"> -->
+  <div id="app">
     <v-app>
       <v-content>
         <!-- TODO: Implementar Bara de navegacion -->
         <!-- <page-header /> -->
-        <v-container>
+        <v-container class="d-inline-block pa-2">
           <router-view/>
         </v-container>
       </v-content>
     </v-app>
     <!-- <img src="./assets/logo.png"> -->
     <!-- <router-view/> -->
-  <!-- </div> -->
+  </div>
 </template>
 
 <script>

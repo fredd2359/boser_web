@@ -5,6 +5,7 @@ const logger = require('./middleware/logger');
 const assert = require('assert');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 require ('dotenv').config();
 
 //Se conecta a base de datos MongoDB Atlas
@@ -39,11 +40,11 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 //Body parser
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
 
 app.use(cors());
-
 
 //Se comienzan las rutas de front principales
 app.get('/',(req,res) => {
@@ -68,6 +69,8 @@ app.use('/api/members',require('./routes/api/members'));
 app.use('/user/',require('./routes/api/usuario'));
 //Ruta para manejo de memes
 app.use('/api/imagenes',require('./routes/api/imagenes'));
+//Ruta para manejo de links
+app.use('/api/links',require('./routes/api/links'));
 
 //Pubic directory
 app.use('/', express.static(path.join(__dirname,'public')));

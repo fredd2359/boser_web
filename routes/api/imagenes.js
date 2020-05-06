@@ -46,15 +46,15 @@ router.get('/', (req,res, next) => {
                     return {
                         _id: doc._id,
                         nombre : doc.nombre,
-                        pathImagen : doc.pathImagen
+                        ruta : doc.ruta
                     }
                 })
             };
-            res.status(200).json(response);
+            return res.status(200).json(response);
         }
     ).catch(err => {
         console.log("Error al consultar imagenes: " +  err);
-        res.status(500).json({error: err});
+        return res.status(500).json({error: err});
     });
 });
 
@@ -68,11 +68,11 @@ router.post('/', upload.single('memeImagen'), check_auth,(req,res,next) => {
     imagen.save().then(
         result => {
             console.log(result);
-            res.status(201).json({
+            return res.status(201).json({
                 message : 'Imagen subida exitosamente',
                 imagenCreada: {
                     nombre : result.nombre,
-                    pathImagen: result.pathImagen,
+                    pathImagen: result.pathImagen, // Http://localhost:5000/fut.png
                     _id: result._id,
                     request: {
                         type: 'GET',
@@ -82,6 +82,28 @@ router.post('/', upload.single('memeImagen'), check_auth,(req,res,next) => {
             });
         }
     );
+});
+
+router.delete('/:imagenId', check_auth,(req,res) => {
+    Link.findOneAndDelete({_id : req.params.imagenId})
+        .exec()
+        .then(result => {
+            //Agregar parte en caso de que no haya encontrado registros
+            if (!result) {
+                return res.status(404).json({
+                    message : "El link a eliminar no se ha encontrado"
+                });
+            }
+            const imagen = new Imagen(result);
+            return res.status(200).json({
+                message : "Imagen "+imagen._nombre  +" ha sido eliminado"
+            });
+        }).catch( err => {
+            console.log(err);
+            return res.status(500).json(
+                {error : err}
+            );
+        });
 });
 
 module.exports = router;
