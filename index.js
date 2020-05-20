@@ -52,7 +52,6 @@ app.get('/',(req,res) => {
 });
 
 app.get('/login',(req,res) => {
-    console.log("alv se mete aqui");
     res.render('login-view', {
         layout: 'admin'
     });

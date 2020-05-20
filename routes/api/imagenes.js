@@ -76,16 +76,16 @@ router.post('/', upload.single('memeImagen'), check_auth,(req,res,next) => {
         result => {
             console.log(result);
             return res.status(201).json({
-                message : 'Imagen subida exitosamente',
+                message : 'Imagen guardada exitosamente.',
                 imagenCreada: {
                     nombre : result.nombre,
                     pathImagen: result.pathImagen, // Http://localhost:5000/fut.png
                     _id: result._id,
-                    rutaWeb: result.rutaWeb,
-                    request: {
-                        type: 'GET',
-                        url: '/api/imagenes/' + result._id
-                    }
+                    rutaWeb: result.rutaWeb
+                },
+                request: {
+                    type: 'GET',
+                    url: '/api/imagenes/' + result._id
                 }
             });
         }
@@ -99,11 +99,11 @@ router.delete('/:imagenId', check_auth,(req,res) => {
             //Agregar parte en caso de que no haya encontrado registros
             if (!result) {
                 return res.status(404).json({
-                    message : "El link a eliminar no se ha encontrado"
+                    message : "La imagen a eliminar no se ha encontrado"
                 });
             }
             const imagen = new Imagen(result);
-            return res.status(200).json({
+            return res.status(201).json({
                 message : "Imagen "+imagen._nombre  +" ha sido eliminada"
             });
         }).catch( err => {

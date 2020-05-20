@@ -38,14 +38,14 @@ router.post('/', check_auth, (req,res,next) => {
         result => {
             console.log(result)
             return res.status(201).json({
-                message: 'Link subido exitosamente.',
+                message: 'Link guardado exitosamente.',
                 linkCreado: {
                     ruta : result.ruta,
-                    _id: result._id,
-                    request: {
-                        type: 'GET',
-                        url: '/api/links/' + result._id
-                    }
+                    _id: result._id
+                },
+                request: {
+                    type: 'GET',
+                    url: '/api/links/' + result._id
                 }
             })
         }
@@ -100,7 +100,7 @@ router.delete('/:linkId', check_auth,(req,res) => {
                 });
             }
             const link = new Link(result);
-            return res.status(200).json({
+            return res.status(201).json({
                 message : "Link "+ link._id  +" ha sido eliminado"
             });
         }).catch( err => {

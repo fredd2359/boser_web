@@ -11,7 +11,7 @@ const Usuario = require('../../models/usuario')
 //Obtiene todos los usuarios
 router.get('/',check_auth, (req,res, next) => {
     console.log('entra a metodo');
-    Usuario.find().select('user pasword nombre email').exec().then(
+    Usuario.find().exec().then(
         docs => {
             const response = {
                 count: docs.length,
@@ -30,7 +30,6 @@ router.get('/',check_auth, (req,res, next) => {
             return res.status(200).json(response);
         }
     ).catch(err => {
-        console.log("Error al consultar usuarios: " +  err);
         return res.status(500).json({error: err});
     });
 });
@@ -40,7 +39,6 @@ router.post('/signup', (req, res, next) => {
         .exec()
         .then(usuario => {
             if(usuario.length != 0) {
-                console.log('ya entro');
                 return res.status(409).json({
                     message : 'Ya existe un usuario con ese nombre'
                 });
@@ -86,7 +84,6 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req,res,next) => {
-    console.log("Entra en el servidor la petición user:" + req.body.user);
     Usuario.find({user : req.body.user})
         .exec()
         .then( usuario => {
@@ -153,4 +150,4 @@ router.delete('/:usuarioId', check_auth,(req,res) => {
         });
 });
 
-module.exports = router;
+module.exports = router;wd
