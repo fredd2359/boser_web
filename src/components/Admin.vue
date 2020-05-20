@@ -143,7 +143,7 @@ export default {
       {
         nombre: 'nombre1',
         fecha: 'fecha1',
-        pathImagen: 'http:local../RaF.jpg'
+        pathImagen: 'memes/RaF.jpg'
       },
       {
         nombre: 'nombre2',
