@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Principal from '@/components/Principal'
 import Login from '@/components/Login'
 import Admin from '@/components/Admin'
 
@@ -11,8 +11,8 @@ export default new Router({
   routes: [
     { // Aqui va a ir la pagina principal de bianca
       path: '/',
-      name: 'Index',
-      component: HelloWorld
+      name: 'index',
+      component: Principal
     },
     {
       path: '/login',
