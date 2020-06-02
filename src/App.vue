@@ -3,7 +3,7 @@
     <v-app>
       <v-content>
         <!-- <page-header /> -->
-        <v-img class="responsive" src="http://localhost:5000/imagenes/pportada.jpg">
+        <v-img class="responsive" src="http://localhost:5000/imagenes/Pportada.jpg">
         </v-img>
         <v-toolbar
           dark
