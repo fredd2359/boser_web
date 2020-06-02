@@ -150,4 +150,4 @@ router.delete('/:usuarioId', check_auth,(req,res) => {
         });
 });
 
-module.exports = router;wd
+module.exports = router;

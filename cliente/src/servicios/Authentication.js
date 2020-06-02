@@ -5,7 +5,7 @@ export default {
     console.log('entra a login', credenciales)
     const credenciales2 = JSON.stringify(credenciales)
     console.log(credenciales2)
-    Api().post('/user/login', credenciales2)
+    Api().post('/user/login', credenciales)
       .then(res => {
         console.log('respuesta: ' + res)
       })

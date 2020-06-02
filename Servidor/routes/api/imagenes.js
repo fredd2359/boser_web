@@ -10,7 +10,7 @@ const Imagen = require('../../models/imagenes');
 
 const storage = multer.diskStorage({
     destination : function(req,file,cb) {
-        cb(null, './public/imagenes');
+        cb(null, './public/imagenes/memes');
     },
     filename: function(req,file,cb){
         var año = new Date().getFullYear();
@@ -51,7 +51,7 @@ router.get('/', (req,res, next) => {
                     }
                 })
             };
-            return res.status(200).json(response);
+            return res.status(201).json(response);
         }
     ).catch(err => {
         return res.status(500).json({error: err});
@@ -70,7 +70,7 @@ router.post('/', upload.single('memeImagen'), check_auth,(req,res,next) => {
         _id: new mongoose.Types.ObjectId(),
         nombre: nombreImg,
         pathImagen : req.file.path,
-        rutaWeb: `${req.protocol}://${req.get('host')}/imagenes/${nombreImg}`
+        rutaWeb: `${req.protocol}://${req.get('host')}/imagenes/memes/${nombreImg}`
     });
     imagen.save().then(
         result => {

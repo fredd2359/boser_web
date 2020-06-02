@@ -16,13 +16,12 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 const app = express();
 //Se activa cors
-// app.use(function(req, res, next) {
-//     console.log("Activando cors");
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     //console.log(res);
-//     next();
-// });
+ app.use(function(req, res, next) {
+     res.header("Access-Control-Allow-Origin", "*");
+     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+     //console.log(res);
+     next();
+ });
 //Init Middleware
 //app.use(logger);
 
@@ -46,8 +45,7 @@ app.use(cors());
 app.get('/',(req,res) => {
     console.log(__dirname);
     res.render('index', {
-        tittle: 'Hola bianca',
-        members
+        tittle: 'Hola bianca'
     });
 });
 
