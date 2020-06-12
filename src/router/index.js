@@ -17,8 +17,7 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login,
-      template: '</App2>'
+      component: Login
     },
     {
       path: '/admin',

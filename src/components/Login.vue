@@ -1,12 +1,12 @@
 <template>
   <v-layout column>
-    <v-flex xs6 offset-xs3>
+    <v-flex xs6>
       <div class="white elevation-2">
         <!-- <h1>Pagina de login</h1>
         <input type='text' name='user' v-model="user" placeholder='Usuario'>
         <input type='password' name='password' v-model="password" placeholder='Contraseña'>
         <button @click="login" >Iniciar Sesión</button> -->
-        <v-toolbar flat dense class="green accent-3">
+        <v-toolbar flat dense dark src="http://localhost:5000/imagenes/estadio.jpg">
           <v-toolbar-title>Log In</v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
@@ -39,8 +39,7 @@
             ></v-checkbox> -->
 
             <v-btn
-              block
-              color="success"
+              color="primary"
               class="mr-4"
               @click="login"
             >

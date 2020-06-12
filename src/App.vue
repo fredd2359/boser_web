@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app2">
     <v-app>
-      <v-content>
-        <page-header />
+      <v-content class="hola">
+        <!-- <page-header /> -->
         <!-- Sección del cuerpo -->
-        <v-container class="d-inline-block pa-2">
+        <!-- <v-container class="d-inline-block pa-2"> -->
           <router-view/>
-        </v-container>
+        <!-- </v-container> -->
       </v-content>
     </v-app>
     <!-- <img src="./assets/logo.png"> -->
@@ -37,24 +37,24 @@
           </div>
         </div>
         <div class="col-sm-4">
-        <div class="footer-widget">
-          <h3>REDES SOCIALES</h3>
-          <div class="footer-widget-content">
-            <div class="images-gellary">
-              <ul>
-                <li><a href="#"><img src="http://localhost:5000/imagenes/redesfb.png" style="width: 85px; " alt="Instagram 01"></a></li>
-                <li><a href="#"><img src="http://localhost:5000/imagenes/redesinsta.png" style="width: 85px; " alt="Instagram 02"></a></li>
-                <li><a href="#"><img src="http://localhost:5000/imagenes/redestw.png" style="width: 85px; " alt="Instagram 03"></a></li>
-                <li><a href="#"><img src="http://localhost:5000/imagenes/redeswhats.png" style="width: 85px; " alt="Instagram 04"></a></li>
-                <li><a href="#"><img src="http://localhost:5000/imagenes/redesyt.png" style="width: 85px; " alt="Instagram 05"></a></li>
-              </ul>
+          <div class="footer-widget">
+            <h3>REDES SOCIALES</h3>
+            <div class="footer-widget-content">
+              <div class="images-gellary">
+                <ul>
+                  <li><a href="#"><img src="http://localhost:5000/imagenes/redesfb.png" style="width: 85px; " alt="Instagram 01"></a></li>
+                  <li><a href="#"><img src="http://localhost:5000/imagenes/redesinsta.png" style="width: 85px; " alt="Instagram 02"></a></li>
+                  <li><a href="#"><img src="http://localhost:5000/imagenes/redestw.png" style="width: 85px; " alt="Instagram 03"></a></li>
+                  <li><a href="#"><img src="http://localhost:5000/imagenes/redeswhats.png" style="width: 85px; " alt="Instagram 04"></a></li>
+                  <li><a href="#"><img src="http://localhost:5000/imagenes/redesyt.png" style="width: 85px; " alt="Instagram 05"></a></li>
+                </ul>
+              </div>
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
   </div>
 </template>
 
