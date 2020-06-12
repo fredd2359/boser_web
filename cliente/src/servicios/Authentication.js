@@ -2,9 +2,7 @@ import Api from './Api'
 
 export default {
   login (credenciales) {
-    console.log('entra a login', credenciales)
-    const credenciales2 = JSON.stringify(credenciales)
-    console.log(credenciales2)
+    // const credenciales2 = JSON.stringify(credenciales)
     Api().post('/user/login', credenciales)
       .then(res => {
         console.log('respuesta: ' + res)

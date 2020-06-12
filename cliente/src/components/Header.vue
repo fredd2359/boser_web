@@ -8,7 +8,7 @@
           accent-4
           dense
         >
-          <v-app-bar-nav-icon></v-app-bar-nav-icon>
+          <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
 
           <v-toolbar-title>
             <img src="http://localhost:5000/imagenes/logoblanco.png" class="img1" alt="">
