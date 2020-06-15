@@ -1,6 +1,6 @@
 <template>
-  <v-layout column>
-    <v-flex xs6>
+  <v-container column>
+    <v-flex class="container " style="margin-top: 10%">
       <div class="white elevation-2">
         <!-- <h1>Pagina de login</h1>
         <input type='text' name='user' v-model="user" placeholder='Usuario'>
@@ -29,6 +29,14 @@
               required
             ></v-text-field>
 
+            <v-alert
+              dense
+              outlined
+              type="error"
+              :value = mostrarAlert
+            >
+              {{mensaje}}
+            </v-alert>
             <!-- TODO: Podría ser un recuerdame?  -->
             <!-- <v-checkbox
               v-model="checkbox"
@@ -45,11 +53,11 @@
             >
               Iniciar Sesión
             </v-btn>
-            <v-col cols="12" class="mt-12">
-              <v-tooltip v-model="show" top>
+            <!-- <v-col cols="12" class="mt-12">
+              <v-tooltip v-model="show">
                 <span>Programmatic tooltip</span>
               </v-tooltip>
-            </v-col>
+            </v-col> -->
             <!-- <v-btn
               :disabled="!valid"
               color="error"
@@ -69,7 +77,7 @@
         </div>
       </div>
     </v-flex>
-  </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -77,29 +85,33 @@ import Authentication from '@/servicios/Authentication'
 export default {
   name: 'HelloWorld',
   data: () => ({
-    show: false,
+    show: true,
     valid: true,
+    mensaje: '',
+    mostrarAlert: false,
     user: '',
     password: '',
     userRules: [
       v => !!v || 'Usuario es requerido'
     ],
     passRules: [
-      v => !!v || 'Contaseña es requerida'
+      v => !!v || 'Contraseña es requerida'
     ]
   }),
   methods: {
     async login () {
-      console.log(`Empieza el metodo ${this.user}, valid: ${this.valid}`)
-      const response = await Authentication.login({
+      const res1 = (await Authentication.login({
         user: this.user,
         password: this.password
-      })
-      console.log('Respuesta: ' + response)
-      // Cuando la petición sea exitosa
-      // if(response.data)...
-      this.$router.push('admin')
-      // console.log(response.data)
+      }))
+
+      if (res1.status === 201) {
+        this.mensaje = res1.data.mensaje
+        this.mostrarAlert = false
+        this.$router.push('admin')
+      }
+      this.mostrarAlert = true
+      this.mensaje = res1.data.response.data.message
     },
     validate () {
       this.$refs.form.validate()
