@@ -14,11 +14,15 @@
           ref="form"
           v-model="valid"
           lazy-validation
+          sumbit="login"
           >
             <v-text-field
               v-model="user"
               :rules="userRules"
               label="Usuario"
+              :sm= 12
+              :md= 6
+              :lg= 6
               required
             ></v-text-field>
 
