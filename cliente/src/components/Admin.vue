@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid>
-    <v-row align="center">
+  <v-container column>
+    <v-row style='margin-top: 5%'>
       <v-expansion-panels
         :accordion=true
         :multiple=true
@@ -19,7 +19,7 @@
               >
                 <v-card>
                   <v-img
-                    :src="card"
+                    :src= "imagenSel"
                     class="white--text align-end"
                     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                     height="200px"
@@ -52,9 +52,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="imagen in imagenes" :key="imagen.name">
+                      <tr v-for="imagen in imagenes.imagenes" :key="imagen.name" @click="cambiarImagen(imagen)">
                         <td class="text-left">{{ imagen.nombre }}</td>
-                        <td class="text-left">{{ imagen.fecha }}</td>
+                        <td class="text-left">{{ imagen.fechaCreacion }}</td>
                       </tr>
                     </tbody>
                   </template>
@@ -64,7 +64,7 @@
             <v-row class="">
               <v-col class="col-12">
                 <form @submit.prevent="subirImagen" enctype="multipart/form-data">
-                  <v-file-input accept="image/*" v-model="imagenSel" label="Seleccionar Imagen"></v-file-input>
+                  <v-file-input accept="image/*" v-model="imagenSubir" label="Subir una Imagen"></v-file-input>
                   <v-btn
                     color="success"
                     dark
@@ -82,7 +82,7 @@
           <v-expansion-panel-content>
             <!-- Aqui se pondrá la modificiación de links de la pagina principal  -->
             <v-row>
-              <v-col class="col-12" v-for="link in links" :key="link.ruta">
+              <v-col class="col-12" v-for="link in links.links" :key="link.ruta">
                 <form>
                   <v-row v-model="link._id" class="justify-center">
                     <v-text-field
@@ -133,51 +133,22 @@
 
 <script>
 import Admin from '@/servicios/Admin'
+import Visuales from '@/servicios/Visuales'
 export default {
   data: () => ({
-    card: 'http://localhost:5000/imagenes/estadio.jpg',
     activos: [0],
-    imagenSel: {},
+    imagenSel: 'http://localhost:5000/imagenes/estadio.jpg',
+    _idImagenSel: 0,
+    imagenSubir: [],
     urlImg: 'http://localhost:5000/imagenes/estadio.jpg',
-    imagenes: [
-      {
-        nombre: 'nombre1',
-        fecha: 'fecha1',
-        pathImagen: 'memes/RaF.jpg'
-      },
-      {
-        nombre: 'nombre2',
-        fecha: 'fecha2',
-        pathImagen: 'memes/otra.jpg'
-      }
-    ],
-    links: [
-      {
-        _id: '1',
-        ruta: 'http://uno'
-
-      },
-      {
-        _id: '2',
-        ruta: 'http://dos'
-
-      },
-      {
-        _id: '3',
-        ruta: 'http://tres'
-
-      },
-      {
-        _id: '4',
-        ruta: 'http://cuatro'
-
-      },
-      {
-        _id: '5',
-        ruta: 'http://123.123'
-
-      }
-    ]
+    imagenes: [{
+      _id: 'asd',
+      rutaWeb: 'http://localhost:5000/imagenes/estadio.jpg'
+    }],
+    links: [{
+      _id: '123',
+      ruta: 22
+    }]
     // userRules: [
     //   v => !!v || 'Usuario es requerido'
     // ],
@@ -189,6 +160,8 @@ export default {
     async borrarImagen () {
       // Código lógico para el borrado de imagen
       // Primero irá al servidor a borrarla y despues si todo sale bien se borra en el cliente
+      const response = (await Admin.borrarImagen(this._idImagenSel)).data
+      console.log(response)
     },
     async editarLink (idLink, newRuta) {
       console.log('Entra a metodo editarLink')
@@ -203,6 +176,11 @@ export default {
 
       // Cuando se obtenga la respuesta se actuliza link en posision que se mando modficiar
     },
+    async cambiarImagen (imagen) {
+      console.log(imagen._id.toString())
+      this.imagenSel = imagen.rutaWeb.toString()
+      this._idImagenSel = imagen._id.toString()
+    },
     async subirImagen () {
       console.log('ImagenSel: ')
       console.log(this.imagenSel)
@@ -215,6 +193,19 @@ export default {
         success: true
       }
     }
+  },
+  async mounted () {
+    this.imagenes = (await Visuales.CarouselImgs()).data
+    this.links = (await Visuales.ObtenerLinks()).data
+    const a = this.imagenes.imagenes[0].rutaWeb.toString()
+    console.log(a)
+    if (typeof a === 'string') {
+      console.log('entra a if')
+    }
+    this.imagenSel = a
+    // this.imagenes = resMemes.imagenes
+    // console.log(process.env.host + ' ' + process.env.port)
+    console.log(this.imagenes.imagenes[0].rutaWeb)
   }
 }
 </script>

@@ -10,5 +10,14 @@ export default {
     //   console.log(res.status)
     //   return res.status
     return Api().get('http://localhost:5000/api/imagenes')
+  },
+
+  ObtenerLinks () {
+    return Api().get('http://localhost:5000/api/links')
+  },
+
+  borrarImagen (idImagen) {
+    return Api().delete(process.env.server + '/api/imagenes/' + idImagen)
+    // asd
   }
 }
