@@ -13,6 +13,8 @@ const userSchema = mongoose.Schema({
         required : true,
         match : /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
     }
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Usuario', userSchema);

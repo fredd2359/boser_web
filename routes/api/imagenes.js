@@ -39,7 +39,7 @@ const upload = multer(  {
 
 //Obtiene todos los memes (o los que irán en el carrousel)
 router.get('/', (req,res, next) => {
-    Imagen.find().select('nombre rutaWeb').exec().then(
+    Imagen.find().select('nombre rutaWeb createdAt').exec().then(
         docs => {
             const response = {
                 count: docs.length,
@@ -47,7 +47,8 @@ router.get('/', (req,res, next) => {
                     return {
                         _id: doc._id,
                         nombre : doc.nombre,
-                        rutaWeb : doc.rutaWeb
+                        rutaWeb : doc.rutaWeb,
+                        fechaCreacion: doc.createdAt
                     }
                 })
             };

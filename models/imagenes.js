@@ -5,6 +5,8 @@ const imagenSchema = mongoose.Schema({
     nombre : {type: String, required : true},
     pathImagen : {type: String, required: true},
     rutaWeb: {type:String, required: true}
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Imagen', imagenSchema);
