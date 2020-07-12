@@ -9,7 +9,21 @@
     <title>boser-front</title>
   </head>
   <body>
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '2824909654304731',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v7.0'
+        });
+      };
+    </script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v7.0&appId=2824909654304731&autoLogAppEvents=1" nonce="9FoVGhUn"></script>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <!-- <div id="fb-root"></div> -->
+    
   </body>
 </html>
