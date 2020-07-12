@@ -104,18 +104,22 @@ export default {
   }),
   methods: {
     async login () {
-      const res1 = (await Authentication.login({
+      const response = (await Authentication.login({
         user: this.user,
         password: this.password
       }))
 
-      if (res1.status === 201) {
-        this.mensaje = res1.data.mensaje
+      if (response.status === 201) {
+        console.log(response.data.token)
+        this.mensaje = response.mensaje
         this.mostrarAlert = false
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', this.user)
         this.$router.push('admin')
+      } else {
+        this.mostrarAlert = true
+        this.mensaje = response.message
       }
-      this.mostrarAlert = true
-      this.mensaje = res1.data.response.data.message
     },
     validate () {
       this.$refs.form.validate()

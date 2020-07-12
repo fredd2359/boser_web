@@ -34,6 +34,10 @@
         </v-carousel>
       </v-col>
     </v-row>
+    <!-- <v-row>
+      row nuevo para preubas de face
+      <div class="fb-page" data-href="https://www.facebook.com/bosersalseo/" data-tabs="timeline" data-width="" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/bosersalseo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/bosersalseo/">Boser  Salseo Futbolero</a></blockquote></div>
+     </v-row> -->
     <v-row class="justify-center">
       <v-col
         :cols = 2
@@ -45,7 +49,8 @@
       <v-col
         :cols = 8
       >
-        <iframe class="container" width="660" height="415" src="https://www.youtube.com/playlist?list=PLYYhQHDVETBOFAxb_Ny4CTKV429r7NGhA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLYYhQHDVETBOFAxb_Ny4CTKV429r7NGhA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- <iframe class="container" width="660" height="415" src="https://www.youtube.com/playlist?list=PLYYhQHDVETBOFAxb_Ny4CTKV429r7NGhA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
       </v-col>
       <v-col
         :cols = 3
@@ -68,8 +73,10 @@
         :md = 6
         :lg = 8
       >
-        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fbosersalseo%2F&tabs=timeline&width=1000&height=1000&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=833341737179061" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allow="encrypted-media" ></iframe>
-        <div id="fb-root" ></div>
+        <!-- <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fbosersalseo%2F&tabs=timeline&width=1000&height=1000&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=833341737179061" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allow="encrypted-media" ></iframe> -->
+        <!-- <div id="fb-root" ></div> -->
+        <div class="fb-page" :data-href=LINKP data-tabs="timeline" :data-width="anchoFB" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/bosersalseo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/bosersalseo/">Boser  Salseo Futbolero</a></blockquote></div>
+        <!-- <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script> -->
         <!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v6.0&appId=833341737179061&autoLogAppEvents=1"></script> -->
       </v-col>
       <!-- <v-col
@@ -82,10 +89,10 @@
       </v-col> -->
       <v-col
         :sm = 12
-        :md = 12
+        :md = 6
         :lg = 4
       >
-        <iframe src="https://www.facebook.com/groups/sectaboseriana/?source_id=955050067872220" style="border:none;overflow:hidden" scrolling="yes" frameborder="0" allow="encrypted-media" ></iframe>
+        <!-- <iframe src="https://www.facebook.com/groups/sectaboseriana/?source_id=955050067872220" style="border:none;overflow:hidden" scrolling="yes" frameborder="0" allow="encrypted-media" ></iframe> -->
         <!-- Este div no sirve pero el iframe si carga algo -->
         <div class="fb-group" data-href="https://www.facebook.com/groups/sectaboseriana/?source_id=955050067872220" data-width="220" data-show-social-context="true" data-show-metadata="true">
         </div>
@@ -143,15 +150,40 @@ export default {
     }
   },
   async mounted () {
+    // src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2'
     this.imagenes = (await Visuales.CarouselImgs()).data
-    console.log(this.imagenes)
+    var rLinks = (await Visuales.ObtenerLinks()).data
+    this.linkFB = JSON.stringify(rLinks.links[0].ruta)
+    console.log(this.linkFB.replace(/"/g, ''))
+    console.log(this.LINKP)
+    // console.log((rLinks.links))
+    // this.links = rLinks.links
+    // console.log(this.links)
+    // console.log(JSON.stringify(this.links.links[0]))
+    // Codigo para definir el ancho de pagina de face
+    // este ancho se calcula desde que inicia la pagina.
+    switch (this.$vuetify.breakpoint.name) {
+      case 'xs': this.anchoFB = 300
+        break
+      case 'sm': this.anchoFB = 500
+        break
+      case 'md': this.anchoFB = 500
+        break
+      case 'lg': this.anchoFB = 500
+        break
+      case 'xl': this.anchoFB = 500
+    }
     // this.imagenes = resMemes.imagenes
     // console.log('response ' + memes)
   },
   data () {
     return {
       // imagenes: []
-      imagenes: null
+      imagenes: null,
+      anchoFB: 500,
+      links: null,
+      linkFB: null,
+      LINKP: 'https://www.facebook.com/bosersalseo/'
     }
   }
 }
