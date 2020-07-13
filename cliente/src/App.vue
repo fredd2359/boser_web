@@ -1,13 +1,13 @@
 <template>
   <div id="app2">
     <v-app>
-      <v-content class="hola">
+      <v-main class="hola">
         <!-- <page-header /> -->
         <!-- Sección del cuerpo -->
         <!-- <v-container class="d-inline-block pa-2"> -->
           <router-view/>
         <!-- </v-container> -->
-      </v-content>
+      </v-main>
     </v-app>
     <!-- <img src="./assets/logo.png"> -->
     <!-- <router-view/> -->
