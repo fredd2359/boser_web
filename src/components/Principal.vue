@@ -179,7 +179,7 @@ export default {
   data () {
     return {
       // imagenes: []
-      imagenes: null,
+      imagenes: [],
       anchoFB: 500,
       links: null,
       linkFB: null,
