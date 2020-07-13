@@ -42,7 +42,7 @@
       <v-col
         :cols = 2
       >
-        <img class="you1" src="http://localhost:5000/imagenes/Y4.png">
+        <img class="you1" :src='process.env.server + "/imagenes/Y4.png"'>
       </v-col>
     </v-row>
     <v-row class="justify-center">
