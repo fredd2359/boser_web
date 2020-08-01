@@ -9,7 +9,7 @@ export default {
     //   let res = await Api(config)
     //   console.log(res.status)
     //   return res.status
-    return Api().get('http://localhost:5000/api/imagenes')
+    return Api().get(process.env.VUE_APP_SERVER + 'api/imagenes')
   },
 
   ObtenerLinks () {
