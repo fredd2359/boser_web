@@ -1,0 +1,7 @@
+#  Para correr Aplicacion ejecutar
+#   npm isntall
+# Seguido de 
+#   npm run build
+# Para Correr servidor
+#   npm run start
+#En el código hay comentarios de configuracion CONFIG: y TODOs para cambios relativamente rapidos
