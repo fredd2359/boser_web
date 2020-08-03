@@ -23,35 +23,14 @@ const app = express();
  app.use(function(req, res, next) {
      res.header("Access-Control-Allow-Origin", "*");
      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-     //console.log(res);
      next();
  });
-//Init Middleware
-//app.use(logger);
-
-//Handlebars middleware
-// app.engine('handlebars', exphbs({
-//     extName : 'handlebars',
-//     partialsDir : [
-//         path.join(__dirname, 'views/partials')
-//     ]
-// }));
-// app.set('view engine', 'handlebars');
 
 //Body parser
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-
 app.use(cors());
-
-//Se comienzan las rutas de front principales
-// app.get('/',(req,res) => {
-//     console.log(__dirname);
-//     res.render('index', {
-//         tittle: 'Hola bianca'
-//     });
-// });
 
 app.get('/login',(req,res) => {
     res.render('login-view', {
