@@ -29,6 +29,7 @@
             <v-text-field
               v-model="password"
               :rules="passRules"
+              :type="'password'"
               label="Contraseña"
               required
             ></v-text-field>
@@ -108,9 +109,7 @@ export default {
         user: this.user,
         password: this.password
       }))
-
       if (response.status === 201) {
-        console.log(response.data.token)
         this.mensaje = response.mensaje
         this.mostrarAlert = false
         this.$store.dispatch('setToken', response.data.token)
@@ -118,7 +117,7 @@ export default {
         this.$router.push('admin')
       } else {
         this.mostrarAlert = true
-        this.mensaje = response.message
+        this.mensaje = response.data.message
       }
     },
     validate () {
@@ -129,6 +128,13 @@ export default {
     },
     resetValidation () {
       this.$refs.form.resetValidation()
+    }
+  },
+  async mounted () {
+    if (this.$store.state.isUserLoggedIn) {
+      this.$router.push({
+        name: 'admin'
+      })
     }
   }
 }

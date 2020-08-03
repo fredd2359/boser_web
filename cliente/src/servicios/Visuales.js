@@ -2,18 +2,39 @@ import Api from './Api'
 
 export default {
   CarouselImgs () {
-    // const config = {
-    //   method: 'get',
-    //   url: 'imagenes'
-    // }
-    //   let res = await Api(config)
-    //   console.log(res.status)
-    //   return res.status
     return Api().get(process.env.VUE_APP_SERVER + 'api/imagenes')
+      .then(res => {
+        return {
+          success: true,
+          data: res.data
+        }
+      })
+      .catch(err => {
+        return {
+          err: err,
+          success: false,
+          data: null
+        }
+      })
   },
 
   ObtenerLinks () {
-    return Api().get('http://localhost:5000/api/links')
+    // return Api().get(process.env.VUE_APP_SERVER + 'api/links')
+    return Api().get(process.env.VUE_APP_SERVER + 'api/links')
+      .then(res => {
+        return {
+          success: true,
+          message: 'todobin',
+          data: res.data
+        }
+      })
+      .catch(err => {
+        return {
+          err: err,
+          success: false,
+          data: null
+        }
+      })
   },
 
   borrarImagen (idImagen) {

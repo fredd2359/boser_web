@@ -16,26 +16,34 @@
 
           <v-spacer></v-spacer>
 
-          <v-btn>
+          <v-btn
+            v-if="$store.state.isUserLoggedIn"
+            @click="logout"
+          >
             <span>
-              Hola
+              Cerrar Sesion
             </span>
             <!-- <v-icon>mdi-magnify</v-icon> -->
           </v-btn>
-
-          <v-btn icon>
-            <v-icon>mdi-heart</v-icon>
-          </v-btn>
-
-          <v-btn icon>
+          <!-- TODO: implementar barra que se encoge -->
+          <!-- <v-btn icon>
             <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
+          </v-btn> -->
         </v-toolbar>
     </div>
 </template>
 <script>
 export default {
 //   name: 'header'
+  methods: {
+    logout () {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      this.$router.push({
+        name: 'Login'
+      })
+    }
+  }
 }
 </script>
 <style>
