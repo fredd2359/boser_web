@@ -2,39 +2,59 @@ import Api from './Api'
 
 export default {
   editarLink (link) {
-    console.log('entra a editarLink', link)
     const linkParsed = JSON.stringify(link)
-    console.log(linkParsed)
-    Api().post('/api/links/editar', linkParsed)
+    return Api().post(process.env.VUE_APP_SERVER + 'api/links/editar', linkParsed)
       .then(res => {
-        console.log('respuesta: ' + res)
         return res
       })
       .catch(err => {
-        console.log('Error: ' + err)
         return err
       })
   },
 
-  subirImagen (imagen) {
-    console.log(imagen)
-    Api().post('/api/imagenes/', {memeImagen: imagen})
+  subirImagen (imagen, token) {
+    let formData = new FormData()
+    formData.append('memeImagen', imagen)
+    return Api().post(
+      // Ruta
+      process.env.VUE_APP_SERVER + 'api/imagenes',
+      // Body
+      formData,
+      // Headers
+      {
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+    )
       .then(res => {
-        console.log(res)
+        return {
+          success: true,
+          data: res.data
+        }
       })
       .catch(err => {
-        console.log(err)
+        return {
+          err,
+          success: false,
+          data: null
+        }
       })
   },
 
-  eliminarImagen (linkId) {
-    console.log(linkId)
-    Api().delete('/api/imegenes/' + linkId)
+  eliminarImagen (linkId, token) {
+    return Api().delete(process.env.VUE_APP_SERVER + 'api/imagenes/' + linkId, {
+      headers: {
+        Authorization: token
+      }
+    })
       .then(res => {
-        console.log(res)
+        return res
       })
       .catch(err => {
         console.log(err)
+        return err
       })
   }
 }

@@ -11,7 +11,7 @@
     </v-app>
     <!-- <img src="./assets/logo.png"> -->
     <!-- <router-view/> -->
-    <footer class="footer">
+    <!-- <footer class="footer">
       <div class="container">
         <div class="row">
           <div class="col-sm-4">
@@ -54,7 +54,7 @@
           </div>
         </div>
       </div>
-    </footer>
+    </footer> -->
   </div>
 </template>
 

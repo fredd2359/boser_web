@@ -24,7 +24,7 @@
                       :src= "imagenSel"
                       class="white--text align-end"
                       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                      height="200px"
+                      height="100%"
                     >
                     <v-card-title class="justify-end">
                       <v-btn
@@ -33,7 +33,7 @@
                         dark
                         small
                         color="pink"
-                        @click="borrarImagen"
+                        @click="borrarImagen()"
                       >
                         <!-- <v-icon dark>mdi-heart</v-icon> -->
                         <i class="far fa-trash-alt"></i>
@@ -54,9 +54,9 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="imagen in imagenes.imagenes" style="cursor: pointer;" :key="imagen.name" @click="cambiarImagen(imagen)">
-                          <td class="text-left">{{ imagen.nombre }}</td>
-                          <td class="text-left">{{ imagen.fechaCreacion }}</td>
+                        <tr v-for="imagen in imagenes.files" style="cursor: pointer;" :key="imagen._id" @click="cambiarImagen(imagen, imagen._id)">
+                          <td class="text-left">{{ imagen.filename }}</td>
+                          <td class="text-left">{{ imagen.uploadDate }}</td>
                         </tr>
                       </tbody>
                     </template>
@@ -65,8 +65,8 @@
               </v-row>
               <v-row class="">
                 <v-col class="col-12">
-                  <form @submit.prevent="subirImagen" enctype="multipart/form-data">
-                    <v-file-input accept="image/*" v-model="imagenSubir" label="Subir una Imagen"></v-file-input>
+                  <form enctype="multipart/form-data">
+                    <v-file-input accept="image/*" type="file" v-model="imagenSubir" label="Subir una Imagen"></v-file-input>
                     <v-btn
                       color="success"
                       dark
@@ -145,7 +145,7 @@ export default {
   },
   data: () => ({
     activos: [0],
-    imagenSel: 'http://localhost:5000/imagenes/estadio.jpg',
+    imagenSel: '',
     _idImagenSel: 0,
     imagenSubir: [],
     urlImg: 'http://localhost:5000/imagenes/estadio.jpg',
@@ -168,52 +168,75 @@ export default {
     async borrarImagen () {
       // Código lógico para el borrado de imagen
       // Primero irá al servidor a borrarla y despues si todo sale bien se borra en el cliente
-      const response = (await Admin.borrarImagen(this._idImagenSel)).data
-      console.log(response)
+      if (this._idImagenSel === undefined || this._idImagenSel === 0) {
+        // TODO: Implementar mensaje de error para cuando no manda nada
+        // o asignarle la primer imagen de una vez? yes
+        return false
+      }
+      // TODO: implementar mensajes de error al eliminar
+      const response = (await Admin.eliminarImagen(this._idImagenSel, this.$store.state.token))
+      if (response.status === 201) {
+        if (this.imagenes.files.length >= 1) {
+          this.imagenes.files.splice(this.imagenes.files.findIndex(x => x._id === this._idImagenSel), 1)
+          if (this.imagenes.files.length > 0) {
+            // Si no va a existir imagenes, se queda con la ultima a borrar
+            this._idImagenSel = this.imagenes.files[0]._id
+            this.imagenSel = this.imagenes.files[0].metadata.url
+          }
+        }
+        return true
+      }
+      // TODO: Implementar mensaje de error al borrar
+      return false
     },
     async editarLink (idLink, newRuta) {
-      console.log('Entra a metodo editarLink')
-      console.log('idLink: ' + idLink)
       const response = await Admin.editarLink({
         _id: idLink,
         newruta: newRuta
       })
-      console.log(response)
-      return true
+      if (response.sucess) {
+        return true
+      }
+      return false
       // Llamar a base de datos para cambio de link
 
       // Cuando se obtenga la respuesta se actuliza link en posision que se mando modficiar
     },
     async cambiarImagen (imagen) {
-      console.log(imagen._id.toString())
-      this.imagenSel = imagen.rutaWeb.toString()
+      this.imagenSel = imagen.metadata.url.toString()
       this._idImagenSel = imagen._id.toString()
     },
     async subirImagen () {
-      console.log('ImagenSel: ')
-      console.log(this.imagenSel)
-      // Llama a back para subir imagen
-      const response = await Admin.subirImagen(this.imagenSel)
-      console.log(response)
-      // Se envia con la nomencaltura de memes/img.ext
-      return {
-        msg: 'Imagen guardada',
-        success: true
+      // // Llama a back para subir imagen
+      const response = (await Admin.subirImagen(this.imagenSubir, this.$store.state.token))
+      if (response.success) {
+        // TODO: implementar mensaje de OK
+        this.imagenes = []
+        this.imagenes = (await Visuales.CarouselImgs()).data
+        return true
       }
+      return false
+      // return {
+      //   msg: 'Imagen guardada',
+      //   success: true
+      // }
     }
   },
   async mounted () {
+    if (!this.$store.state.isUserLoggedIn) {
+      this.$router.push({
+        name: 'Login'
+      })
+    }
     this.imagenes = (await Visuales.CarouselImgs()).data
     this.links = (await Visuales.ObtenerLinks()).data
-    const a = this.imagenes.imagenes[0].rutaWeb.toString()
-    console.log(a)
-    if (typeof a === 'string') {
-      console.log('entra a if')
+    if (this.imagenes.files.length === 0) {
+      // TODO: implementar mensaje de que no hay imagenes
     }
-    this.imagenSel = a
-    // this.imagenes = resMemes.imagenes
-    // console.log(process.env.host + ' ' + process.env.port)
-    console.log(this.imagenes.imagenes[0].rutaWeb)
+    if (this.imagenes.files.length > 0) {
+      this._idImagenSel = this.imagenes.files[0]._id
+      this.imagenSel = this.imagenes.files[0].metadata.url
+    }
   }
 }
 </script>
