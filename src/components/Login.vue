@@ -6,7 +6,7 @@
         <input type='text' name='user' v-model="user" placeholder='Usuario'>
         <input type='password' name='password' v-model="password" placeholder='Contraseña'>
         <button @click="login" >Iniciar Sesión</button> -->
-        <v-toolbar flat dense dark src="http://localhost:5000/imagenes/estadio.jpg">
+        <v-toolbar flat dense dark :src='servidor + "/imagenes/estadio.jpg"'>
           <v-toolbar-title>Log In</v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
@@ -95,6 +95,7 @@ export default {
     mensaje: '',
     mostrarAlert: false,
     user: '',
+    servidor: process.env.VUE_APP_SERVER,
     password: '',
     userRules: [
       v => !!v || 'Usuario es requerido'

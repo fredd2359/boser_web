@@ -21,7 +21,7 @@ export default {
 
   ObtenerLinks () {
     // return Api().get(process.env.VUE_APP_SERVER + 'api/links')
-    return Api().get(process.env.VUE_APP_SERVER + 'api/links')
+    return Api().get(process.env.VUE_APP_SERVER + '/api/links')
       .then(res => {
         console.log(res)
         return {
