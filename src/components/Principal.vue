@@ -169,7 +169,7 @@ export default {
     }
   },
   async mounted () {
-    this.links = (await Visuales.ObtenerLinks())
+    // this.links = (await Visuales.ObtenerLinks())
     this.imagenes = (await Visuales.CarouselImgs()).data
     switch (this.$vuetify.breakpoint.name) {
       case 'xs': {

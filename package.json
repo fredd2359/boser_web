@@ -6,16 +6,15 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "startOriginal": "node build/webpack.prod.conf.js",
-    "start": "webpack-dev-server --config=build/webpack.dev.conf.js",
+    "startOld": "webpack-dev-server --config=build/webpack.dev.conf.js",
+    "start": "node server.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "buildOriginal": "node build/build.js",
     "build": "webpack --config=build/webpack.prod.conf.js",
-    "build-dev": "webpack --config=build/webpack.dev.conf.js",
-    "heroku-postbuild": "webpack -p"
+    "build-dev": "webpack --config=build/webpack.dev.conf.js"
   },
   "dependencies": {
     "axios": "^0.19.2",

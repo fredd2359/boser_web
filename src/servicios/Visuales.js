@@ -4,6 +4,7 @@ export default {
   CarouselImgs () {
     return Api().get(process.env.VUE_APP_SERVER + 'api/imagenes')
       .then(res => {
+        console.log(res)
         return {
           success: true,
           data: res.data
@@ -22,6 +23,7 @@ export default {
     // return Api().get(process.env.VUE_APP_SERVER + 'api/links')
     return Api().get(process.env.VUE_APP_SERVER + 'api/links')
       .then(res => {
+        console.log(res)
         return {
           success: true,
           message: 'todobin',
@@ -29,6 +31,7 @@ export default {
         }
       })
       .catch(err => {
+        console.log(err)
         return {
           err: err,
           success: false,
