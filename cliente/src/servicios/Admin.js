@@ -17,7 +17,7 @@ export default {
     formData.append('memeImagen', imagen)
     return Api().post(
       // Ruta
-      process.env.VUE_APP_SERVER + 'api/imagenes',
+      process.env.VUE_APP_SERVER + '/api/imagenes',
       // Body
       formData,
       // Headers
@@ -44,7 +44,7 @@ export default {
   },
 
   eliminarImagen (linkId, token) {
-    return Api().delete(process.env.VUE_APP_SERVER + 'api/imagenes/' + linkId, {
+    return Api().delete(process.env.VUE_APP_SERVER + '/api/imagenes/' + linkId, {
       headers: {
         Authorization: token
       }
