@@ -2,7 +2,7 @@ import Api from './Api'
 
 export default {
   CarouselImgs () {
-    return Api().get(process.env.VUE_APP_SERVER + 'api/imagenes')
+    return Api().get(process.env.VUE_APP_SERVER + '/api/imagenes')
       .then(res => {
         console.log(res)
         return {
