@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  VUE_APP_SERVER: '"http://localhost:5555/"'
+  VUE_APP_SERVER: '"https://salseofutbolero-server.herokuapp.com"'
 }
