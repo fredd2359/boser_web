@@ -1,7 +1,8 @@
 <template>
     <div>
         <!-- <page-header /> -->
-        <v-img class="responsive" src="http://localhost:5000/imagenes/Pportada.jpg">
+        <v-img class="responsive" :src='servidor +"/imagenes/pportada.jpg"'>
+        <!-- <img class="responsive" :src='servidor +"/imagenes/pportada.jpg"'> -->
         </v-img>
         <v-toolbar
           dark
@@ -9,9 +10,8 @@
           dense
         >
           <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
-
           <v-toolbar-title>
-            <img src="http://localhost:5000/imagenes/logoblanco.png" class="img1" alt="">
+            <img :src='servidor +"/imagenes/logoblanco.png"' class="img1" alt="">
           </v-toolbar-title>
 
           <v-spacer></v-spacer>
@@ -42,6 +42,11 @@ export default {
       this.$router.push({
         name: 'Login'
       })
+    }
+  },
+  data () {
+    return {
+      servidor: process.env.VUE_APP_SERVER
     }
   }
 }
