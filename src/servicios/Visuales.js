@@ -1,10 +1,11 @@
 import Api from './Api'
+var path = require('path')
 
 export default {
   CarouselImgs () {
-    return Api().get(process.env.VUE_APP_SERVER + '/api/imagenes')
+    return Api().get(path.join(process.env.VUE_APP_SERVER + '/api/imagenes'))
       .then(res => {
-        console.log(res)
+        // console.log(res)
         return {
           success: true,
           data: res.data
@@ -21,7 +22,7 @@ export default {
 
   ObtenerLinks () {
     // return Api().get(process.env.VUE_APP_SERVER + 'api/links')
-    return Api().get(process.env.VUE_APP_SERVER + '/api/links')
+    return Api().get(path.join(process.env.VUE_APP_SERVER, '/api/links'))
       .then(res => {
         console.log(res)
         return {

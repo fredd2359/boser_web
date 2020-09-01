@@ -20,16 +20,40 @@
             v-if="$store.state.isUserLoggedIn"
             @click="logout"
           >
-            <span>
+            <!-- <span>
+            </span> -->
               Cerrar Sesion
-            </span>
             <!-- <v-icon>mdi-magnify</v-icon> -->
           </v-btn>
           <!-- TODO: implementar barra que se encoge -->
           <!-- <v-btn icon>
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn> -->
+          <!-- TODO: barra de navegacion -->
+          <!-- <template v-slot:extension>
+            <v-tabs
+              v-model="tab"
+              align-with-title
+            >
+              <v-tabs-slider color="yellow"></v-tabs-slider>
+
+              <v-tab v-for="item in items" :key="item">
+                {{ item }}
+              </v-tab>
+            </v-tabs>
+          </template> -->
         </v-toolbar>
+        <!-- TODO: implementar barra de navegacion -->
+        <!-- <v-tabs-items v-model="tab">
+          <v-tab-item
+            v-for="item in items"
+            :key="item"
+          >
+            <v-card flat>
+              <v-card-text v-text="text"></v-card-text>
+            </v-card>
+          </v-tab-item>
+        </v-tabs-items> -->
     </div>
 </template>
 <script>
@@ -46,7 +70,10 @@ export default {
   },
   data () {
     return {
-      servidor: process.env.VUE_APP_SERVER
+      servidor: process.env.VUE_APP_SERVER,
+      items: [
+        'web', 'shopping', 'videos', 'images', 'news'
+      ]
     }
   }
 }
