@@ -11,7 +11,12 @@
         >
           <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
           <v-toolbar-title>
-            <img :src='servidor +"/imagenes/logoblanco.png"' class="img1" alt="">
+            <img
+              :src='servidor +"/imagenes/logoblanco.png"'
+              class="img1 pointer"
+              alt=""
+              @click="home"
+            >
           </v-toolbar-title>
 
           <v-spacer></v-spacer>
@@ -66,6 +71,12 @@ export default {
       this.$router.push({
         name: 'Login'
       })
+    },
+    home () {
+      // this.$router.push({
+      //   name: 'index'
+      // })
+      window.location.href = `http://192.168.1.66:8080/`
     }
   },
   data () {
@@ -79,5 +90,7 @@ export default {
 }
 </script>
 <style>
-
+.pointer {
+  cursor: pointer;
+}
 </style>
