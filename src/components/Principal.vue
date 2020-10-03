@@ -21,6 +21,7 @@
               :height="tamaños.carousel"
               hide-delimiter-background
               interval=8000
+
             >
               <v-carousel-item
                 reverse-transition="fade-transition"
@@ -47,9 +48,9 @@
             <v-col
               contain
               :sm = 12
-              :md = 8
-              :lg = 8
             >
+              <!-- :md = 8
+              :lg = 8 -->
               <youtube
                 :video-id="source"
                 :player-width="tamaños.youtube.width"
@@ -57,15 +58,20 @@
               >
               </youtube>
             </v-col>
-            <v-col
+            <!-- <v-col
               :sm = 12
               :md = 4
               :lg = 4
             >
               <div class="fb-group" data-href="https://www.facebook.com/groups/sectaboseriana/?source_id=955050067872220" data-width="220" data-show-social-context="true" data-show-metadata="true"></div>
-            </v-col>
+            </v-col> -->
           </v-row>
         </v-parallax>
+        <v-row class="pt-3">
+          <v-col class="pb-0">
+            <page-articulos/>
+          </v-col>
+        </v-row>
       </v-col>
       <v-col
         :sm = 12
@@ -77,7 +83,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col class="pr-0 pl-0">
+      <v-col class="pr-0 pl-0 pb-0">
         <page-foot class="width: 100%" />
       </v-col>
     </v-row>
@@ -90,6 +96,7 @@ import PageHeader from '@/components/Header.vue'
 import VueYouTubeEmbed from 'vue-youtube-embed'
 import PageFoot from '@/components/Foot'
 import PageRedesSociales from '@/components/RedesSociales'
+import PageArticulos from '@/components/Articulos'
 
 export default {
   name: 'Principal',
@@ -97,14 +104,15 @@ export default {
     PageHeader,
     VueYouTubeEmbed,
     PageFoot,
-    PageRedesSociales
+    PageRedesSociales,
+    PageArticulos
   },
   methods: {
   },
   computed: {
     source: {
       get: function () {
-        return this.$youtube.getIdFromURL('https://www.youtube.com/watch?v=' + this.urlchido)
+        return this.$youtube.getIdFromURL(`${window.location.protocol}//www.youtube.com/watch?v=` + this.urlchido)
       }
     },
     tamaños: {
@@ -178,22 +186,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.you1{
-    width: 100px;
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-}
-.you{
-    width: 120px;
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-}
-.you2{
-    width: 190px;
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-}
 </style>
