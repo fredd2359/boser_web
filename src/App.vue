@@ -1,60 +1,10 @@
 <template>
-  <div id="app2">
+  <div>
     <v-app>
-      <v-main class="hola">
-        <!-- <page-header /> -->
-        <!-- Sección del cuerpo -->
-        <!-- <v-container class="d-inline-block pa-2"> -->
+      <v-main>
           <router-view/>
-        <!-- </v-container> -->
       </v-main>
     </v-app>
-    <!-- <img src="./assets/logo.png"> -->
-    <!-- <router-view/> -->
-    <!-- <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="footer-widget">
-              <div class="footer-widget-content">
-                <div class="media">
-                  <div class="media-left">
-                    <img class="img1" src="http://localhost:5000/imagenes/logo.png"  style="width: 150px; " alt="...">
-                      <p>Boser salseo futbolero es una empresa de youtube que comparte contenido deportivo y futbolero</p>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="footer-widget">
-            <h3>CONTACTO</h3>
-            <div class="footer-widget-content">
-              <a href="mailto:sales@example.com" class="contact-link">sales@example.com</a>
-              <a href="mailto:support@example.com" class="contact-link red"> support@example.com </a>
-              <a href="tel:0121234" class="contact-link">(123) 456-789</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="footer-widget">
-            <h3>REDES SOCIALES</h3>
-            <div class="footer-widget-content">
-              <div class="images-gellary">
-                <ul>
-                  <li><a href="#"><img src="http://localhost:5000/imagenes/redesfb.png" style="width: 85px; " alt="Instagram 01"></a></li>
-                  <li><a href="#"><img src="http://localhost:5000/imagenes/redesinsta.png" style="width: 85px; " alt="Instagram 02"></a></li>
-                  <li><a href="#"><img src="http://localhost:5000/imagenes/redestw.png" style="width: 85px; " alt="Instagram 03"></a></li>
-                  <li><a href="#"><img src="http://localhost:5000/imagenes/redeswhats.png" style="width: 85px; " alt="Instagram 04"></a></li>
-                  <li><a href="#"><img src="http://localhost:5000/imagenes/redesyt.png" style="width: 85px; " alt="Instagram 05"></a></li>
-                </ul>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer> -->
   </div>
 </template>
 
@@ -62,6 +12,19 @@
 import PageHeader from '@/components/Header.vue'
 export default {
   name: 'App',
+  metaInfo () {
+    return {
+      title: 'BoserSalseoFutbolero - PaginaWebOficial',
+      meta: [
+        // {name: 'description', content: 'Hola esto es la descripcion.'},
+        // {property: 'og:title', content: 'BoserWeb este es el titulo'},
+        // {property: 'og:site_name', content: 'BoserSalseo'},
+        // {property: 'og:url', content: 'http://www.bosersalseo.com/'},
+        // {property: 'og:type', content: 'website'},
+        // {name: 'robots', content: 'index,follow'}
+      ]
+    }
+  },
   components: {
     PageHeader
   }

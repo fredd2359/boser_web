@@ -47,7 +47,6 @@ export default {
     var cadena = '/objects?hide_metafields=false&type=articulos&read_key=' + process.env.COSMIC_READ_KEY + '&limit=' + limit + '&props=slug,title,content,metadata,_id'
     return Api().get(path.join(process.env.COSMIC_SERVER, cadena))
       .then(res => {
-        console.log('hola')
         return {
           success: true,
           data: res.data
