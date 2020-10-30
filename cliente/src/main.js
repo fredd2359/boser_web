@@ -10,6 +10,7 @@ import store from '@/store/store'
 import VueYoutubeEmbed from 'vue-youtube-embed'
 import VueFacebookPage from 'vue-facebook-page'
 import VueSocialSharing from 'vue-social-sharing'
+import VueMeta from 'vue-meta'
 
 Vue.config.productionTip = false
 
@@ -17,6 +18,7 @@ Vue.use(VueSocialSharing)
 Vue.use(VueYoutubeEmbed)
 
 Vue.use(VueFacebookPage, 2824909654304731)
+Vue.use(VueMeta)
 
 // Vue.use(vuetify)
 sync(store, router)

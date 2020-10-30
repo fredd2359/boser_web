@@ -34,47 +34,32 @@
                   {{articulo.metadata.hashtag}}
                 </v-chip>
               </v-img>
+              <v-card-text
+                v-text="articulo.metadata.fecha_de_subida"
+                class="left pb-0 pointer"
+                @click="getArticulo(articulo.slug)"
+              >
+              </v-card-text>
               <v-card-title
-                class="pb-0 pointer"
+                class="pt-0 pointer"
                 v-text="articulo.metadata.titulo"
                 @click="getArticulo(articulo.slug)"
               >
               </v-card-title>
-              <v-card-text
-                v-text="articulo.metadata.fecha_de_subida"
-                class="left pt-0 pb-0 pointer"
-                @click="getArticulo(articulo.slug)"
-              >
-              </v-card-text>
-              <v-card-actions
+              <!-- <v-card-actions
                 class="pt-0"
               >
                 <v-spacer></v-spacer>
 
-                <!-- <v-btn icon>
-                  <v-icon>mdi-heart</v-icon>
-                </v-btn>
-
-                <v-btn icon>
-                  <v-icon>mdi-bookmark</v-icon>
-                </v-btn>
-
-                <v-btn icon>
-                  <v-icon>mdi-share-variant</v-icon>
-                </v-btn> -->
                 <share-network
                   network="facebook"
                   url="https://news.vuejs.org/issues/180"
-                  title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
                   description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
+                  title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
                   quote="The hot reload is so fast it\'s near instant. - Evan You"
                   hashtags="vuejs,vite"
                 >
-                  <!-- <network network="facebook"> -->
                     <v-icon>mdi-facebook</v-icon>
-                    <!-- <i class="mdi-facebook"></i> Facebook -->
-                  <!-- </network> -->
-                <!-- Share on Facebook -->
                 </share-network>
                 <share-network
                   network="reddit"
@@ -100,7 +85,7 @@
                 >
                     <v-icon>mdi-whatsapp</v-icon>
                 </share-network>
-              </v-card-actions>
+              </v-card-actions> -->
           </v-card>
           </v-col>
         </v-row>

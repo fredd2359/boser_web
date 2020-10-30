@@ -13,22 +13,34 @@
         v-for="articulo in articulos"
         :key="articulo._id"
         v-slot:default="{ active, toggle }"
+        class=""
       >
         <v-card
           :color="active ? undefined : 'grey lighten-1'"
           class="ma-4"
-          height="150"
-          width="180"
+          height="200"
+          width="220"
           @click="toggle"
         >
           <v-img
             :src="articulo.metadata.portada.url"
-            class="white--text align-end"
+            class="white--text align-end left"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
             height="200px"
           >
+            <v-chip
+              class="ma-0"
+              color="deep-orange darken-3"
+              text-color="white"
+              @click="getArticulo(articulo.slug)"
+            >
+              {{articulo.metadata.hashtag}}
+            </v-chip>
+            <!-- :aspect-ratio="16/9" -->
             <v-card-title
-              v-text="typeof articulo.metadata.titulo == 'undefined'? articulo.metadata.titulo : ''"
+              v-text="typeof articulo.metadata.titulo == 'undefined'? '' : articulo.metadata.titulo"
+              class="slide-text pl-1 pr-0 pb-0 pt-0 d-inline-block text-truncate"
+              style="max-width: 220px;"
             >
             </v-card-title>
           </v-img>
@@ -82,5 +94,9 @@ export default {
 }
 .pointer {
   cursor: pointer;
+}
+.slide-text {
+  font-family: 'Paytone One', sans-serif !important;
+  font-size: 18px;
 }
 </style>

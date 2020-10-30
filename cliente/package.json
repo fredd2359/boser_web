@@ -26,6 +26,7 @@
     "vue": "^2.5.2",
     "vue-facebook-page": "^1.0.1",
     "vue-instagram-embed": "^1.0.0",
+    "vue-meta": "^2.4.0",
     "vue-router": "^3.3.4",
     "vue-social-sharing": "^3.0.0-beta.11",
     "vue-socialmedia-share": "^1.0.1",

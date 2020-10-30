@@ -39,7 +39,7 @@
           </v-col>
         </v-row>
         <v-parallax
-          src = "https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
+          :src ='servidor + "/imagenes/Fondovideo.jpeg"'
           :height="tamaños.parallax"
         >
           <v-row
@@ -128,7 +128,7 @@ export default {
         switch (this.$vuetify.breakpoint.name) {
           case 'xs': {
             t.carousel = 200
-            t.parallax = 750
+            t.parallax = 690
             // No se puede ir mas abajo de 360px
             t.youtube.height = 290
             t.youtube.width = 300
@@ -136,7 +136,7 @@ export default {
           }
           case 'sm': {
             t.carousel = 300
-            t.parallax = 770
+            t.parallax = 720
             t.youtube.height = 360
             t.youtube.width = 400
             break
@@ -177,7 +177,8 @@ export default {
       // imagenes: []
       imagenes: [{imagenes: {rutaweb: '222'}}],
       links: null,
-      urlchido: ''
+      urlchido: '',
+      servidor: process.env.VUE_APP_SERVER
       // servidor: process.env.VUE_APP_SERVER
     }
   }

@@ -9,7 +9,28 @@
       <v-col
         :col = 12
       >
-        <div class="fb-page" data-href="https://www.facebook.com/bosersalseo/" data-tabs="timeline" :data-width='tamaños.facebook.width' :data-height="tamaños.facebook.height" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/bosersalseo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/bosersalseo/">Boser  Salseo Futbolero</a></blockquote></div>
+        <div
+          class="fb-page left"
+          data-href="https://www.facebook.com/BoserSalseoFutboleroOficial/"
+          data-tabs="timeline"
+          :data-width='tamaños.facebook.width'
+          :data-height="tamaños.facebook.height"
+          data-small-header="true"
+          data-adapt-container-width="true"
+          data-hide-cover="false"
+          data-show-facepile="true"
+        >
+          <blockquote
+            cite="https://www.facebook.com/BoserSalseoFutboleroOficial/"
+            class="fb-xfbml-parse-ignore"
+          >
+            <a
+              href="https://www.facebook.com/BoserSalseoFutboleroOficial/"
+            >
+              Boser  Salseo Futbolero
+            </a>
+          </blockquote>
+        </div>
       </v-col>
     </v-row>
     <v-row
@@ -78,7 +99,7 @@ export default {
             break
           }
           case 'lg': {
-            t.facebook.width = 450
+            t.facebook.width = 340
             t.facebook.height = 500
             t.instagram = 400
             t.twitter.width = 450
