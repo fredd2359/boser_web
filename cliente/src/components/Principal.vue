@@ -177,7 +177,7 @@ export default {
     return {
       articulos: [],
       imagenes: [{imagenes: {rutaweb: '222'}}],
-      links: null,
+      links: '',
       urlchido: '',
       servidor: process.env.VUE_APP_SERVER
     }
