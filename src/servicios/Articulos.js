@@ -1,5 +1,5 @@
 import Api from './Api'
-var path = require('path')
+// var path = require('path')
 
 export default {
   ObtenerArticulo (slug) {
@@ -43,8 +43,8 @@ export default {
   ObtenerArticulos () {
     // return Api().get(process.env.VUE_APP_SERVER + 'api/links')
     var limit = 15
-    var cadena = '/objects?hide_metafields=false&type=articulos&read_key=' + process.env.COSMIC_READ_KEY + '&limit=' + limit + '&props=slug,title,content,metadata,_id'
-    return Api().get(path.join(process.env.COSMIC_SERVER, cadena))
+    var cadena = 'objects?hide_metafields=false&type=articulos&read_key=' + process.env.COSMIC_READ_KEY + '&limit=' + limit + '&props=slug,title,content,metadata,_id'
+    return Api().get(process.env.COSMIC_SERVER + cadena)
       .then(res => {
         return {
           success: true,
