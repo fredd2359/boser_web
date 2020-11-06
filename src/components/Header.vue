@@ -76,7 +76,7 @@ export default {
       // this.$router.push({
       //   name: 'index'
       // })
-      window.location.href = `http://192.168.1.66:8080/`
+      window.location.href = `${location.origin}/`
     }
   },
   data () {

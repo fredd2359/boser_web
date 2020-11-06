@@ -124,7 +124,7 @@ import PageHeader from '@/components/Header.vue'
 import PageFoot from '@/components/Foot'
 import PageRedesSociales from '@/components/RedesSociales'
 import Articulos from '@/servicios/Articulos'
-import Cintillo from '@/components/cintilloPrueba'
+import Cintillo from '@/components/cintillo'
 
 export default {
   name: 'Articulo',
@@ -154,7 +154,11 @@ export default {
   },
   data () {
     return {
-      articulo: [],
+      articulo: {
+        metadata: {
+          titulo: ''
+        }
+      },
       exists: false,
       urlActual: ''
     }

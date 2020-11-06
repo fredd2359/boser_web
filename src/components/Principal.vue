@@ -49,8 +49,6 @@
               contain
               :sm = 12
             >
-              <!-- :md = 8
-              :lg = 8 -->
               <youtube
                 :video-id="source"
                 :player-width="tamaños.youtube.width"
@@ -58,19 +56,19 @@
               >
               </youtube>
             </v-col>
-            <!-- <v-col
-              :sm = 12
-              :md = 4
-              :lg = 4
-            >
-              <div class="fb-group" data-href="https://www.facebook.com/groups/sectaboseriana/?source_id=955050067872220" data-width="220" data-show-social-context="true" data-show-metadata="true"></div>
-            </v-col> -->
           </v-row>
         </v-parallax>
-        <v-row class="pt-3">
-          <v-col class="pb-0">
-            <page-articulos/>
-          </v-col>
+        <v-row
+          class="d-flex justify-center"
+        >
+          <v-card
+            outlined
+            class="ml-1 mr-1 mt-3 mb-3"
+            v-for="articulo in articulos.objects"
+            :key="articulo._id"
+          >
+            <page-articulos :articulo="articulo"/>
+          </v-card>
         </v-row>
       </v-col>
       <v-col
@@ -79,7 +77,7 @@
         :lg = 3
         class="pa-0"
       >
-        <page-redes-sociales class="width: 100%" />
+        <page-redes-sociales class="width: 100% lenght: 100%" />
       </v-col>
     </v-row>
     <v-row>
@@ -91,12 +89,14 @@
 </template>
 
 <script>
-import Visuales from '@/servicios/Visuales'
 import PageHeader from '@/components/Header.vue'
 import VueYouTubeEmbed from 'vue-youtube-embed'
 import PageFoot from '@/components/Foot'
 import PageRedesSociales from '@/components/RedesSociales'
+// import PageArticulos from '@/components/Articulos'
 import PageArticulos from '@/components/Articulos'
+import ArticulosService from '@/servicios/Articulos'
+import Visuales from '@/servicios/Visuales'
 
 export default {
   name: 'Principal',
@@ -105,6 +105,7 @@ export default {
     VueYouTubeEmbed,
     PageFoot,
     PageRedesSociales,
+    // PageArticulos,
     PageArticulos
   },
   methods: {
@@ -129,7 +130,6 @@ export default {
           case 'xs': {
             t.carousel = 200
             t.parallax = 690
-            // No se puede ir mas abajo de 360px
             t.youtube.height = 290
             t.youtube.width = 300
             break
@@ -171,15 +171,15 @@ export default {
     this.links = (await Visuales.ObtenerLinks()).data
     this.imagenes = (await Visuales.CarouselImgs()).data
     this.urlchido = this.links.links[0].ruta
+    this.articulos = (await ArticulosService.ObtenerArticulosPrincipal()).data
   },
   data () {
     return {
-      // imagenes: []
+      articulos: [],
       imagenes: [{imagenes: {rutaweb: '222'}}],
       links: null,
       urlchido: '',
       servidor: process.env.VUE_APP_SERVER
-      // servidor: process.env.VUE_APP_SERVER
     }
   }
 }

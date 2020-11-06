@@ -15,10 +15,11 @@
   </head>
   <body>
     <div id="fb-root"></div>
+    <!-- appId            : '2824909654304731', -->
     <script>
       window.fbAsyncInit = function() {
         FB.init({
-          appId            : '2824909654304731',
+          appId            : vsar,
           autoLogAppEvents : true,
           xfbml            : true,
           version          : 'v7.0'
@@ -28,6 +29,14 @@
     <!-- <script src="/dist/vue-social-sharing.js"></script> -->
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v7.0&appId=2824909654304731&autoLogAppEvents=1" nonce="9FoVGhUn"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script async id="prueba">
+      var process={
+        env: {
+          FACEBOOK_APP: ""
+        }
+      };
+      var vsar=process.env.FACEBOOK_APP;
+    </script>
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <!-- <div id="fb-root"></div> -->
