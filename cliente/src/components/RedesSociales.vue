@@ -126,7 +126,7 @@ export default {
   data () {
     return {
       icons: [],
-      InstaToken: ''
+      InstaToken: 'a'
     }
   }
 }
