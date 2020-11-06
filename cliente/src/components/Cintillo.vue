@@ -24,9 +24,10 @@
         >
           <v-img
             :src="articulo.metadata.portada.url"
-            class="white--text align-end left"
+            class="white--text align-end left pointer"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
             height="200px"
+            @click="getArticulo(articulo.slug)"
           >
             <v-chip
               class="ma-0"
@@ -36,6 +37,7 @@
             >
               {{articulo.metadata.hashtag}}
             </v-chip>
+            <v-spacer></v-spacer>
             <!-- :aspect-ratio="16/9" -->
             <v-card-title
               v-text="typeof articulo.metadata.titulo == 'undefined'? '' : articulo.metadata.titulo"
@@ -65,13 +67,13 @@
 import Articulos from '@/servicios/Articulos'
 
 export default {
-  name: 'cintillo',
+  name: 'Cintillo',
   methods: {
     redireccion (url) {
       window.open(url, '_blank')
     },
     getArticulo (slug) {
-      window.location.href = `http://192.168.1.66:8080/articulo/${slug}`
+      window.location.href = `${location.origin}/articulo/${slug}`
     }
   },
   components: {

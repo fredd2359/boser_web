@@ -39,9 +39,11 @@
       <v-col
         :col = 12
       >
+          <!-- :url="'https://www.instagram.com/p/B5_VkYmp1EK/?utm_source=ig_embed&amp;utm_campaign=loading'" -->
+          <!-- :url="'https://www.instagram.com/p/CGtxBs0pS6X/&access_token=' + InstaToken" -->
         <instagram-embed
-          :url="'https://www.instagram.com/p/B5_VkYmp1EK/?utm_source=ig_embed&amp;utm_campaign=loading'"
-          :max-width='tamaños.instagram'
+          :url="'https://graph.facebook.com/v8.0/instagram_oembed?url=https://www.instagram.com/p/CGtxBs0pS6X/&access_token=' + InstaToken"
+          :max-width=500
         />
       </v-col>
     </v-row>
@@ -56,6 +58,7 @@
 </template>
 <script>
 import InstagramEmbed from 'vue-instagram-embed'
+import RedesSocialesService from '@/servicios/RedesSociales'
 
 export default {
   name: 'RedesSociales',
@@ -85,7 +88,7 @@ export default {
             break
           }
           case 'sm': {
-            t.facebook.height = 350
+            t.facebook.width = 350
             t.facebook.height = 500
             t.instagram = 400
             t.twitter.width = 350
@@ -117,9 +120,13 @@ export default {
       }
     }
   },
+  async mounted () {
+    this.InstaToken = (await RedesSocialesService.TAccess()).data.access_token
+  },
   data () {
     return {
-      icons: []
+      icons: [],
+      InstaToken: ''
     }
   }
 }

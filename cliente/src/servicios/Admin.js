@@ -53,7 +53,7 @@ export default {
         return res
       })
       .catch(err => {
-        console.log(err)
+        // TODO: Implementar algo con los errores
         return err
       })
   }
