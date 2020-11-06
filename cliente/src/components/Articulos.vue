@@ -104,7 +104,7 @@ export default {
     // ShareNetwork
   },
   async mounted () {
-    console.log('Este es el Articulos.vue')
+    // console.log('Este es el Articulos.vue')
     // this.articulos = (await Articulos.ObtenerArticulosPrincipal()).data
   },
   data () {
