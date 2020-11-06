@@ -1,5 +1,5 @@
 import Api from './Api'
-var path = require('path')
+// var path = require('path')
 
 export default {
   TAccess () {
@@ -9,7 +9,7 @@ export default {
     var fbGrant = process.env.FB_GRANT_TYPE
     var cadena = '?client_id=' + fbApp + '&client_secret=' + fbSecret + '&grant_type=' + fbGrant
     // return Api().get(path.join(process.env.COSMIC_SERVER + cadena))
-    return Api().get(path.join(fbGraph + cadena))
+    return Api().get(fbGraph + cadena)
       .then(res => {
         return {
           success: true,
