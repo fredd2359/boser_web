@@ -83,7 +83,7 @@
   <!-- </v-col> -->
 </template>
 <script>
-import Articulos from '@/servicios/Articulos'
+// import Articulos from '@/servicios/Articulos'
 
 export default {
   name: 'Articulos',
@@ -104,11 +104,11 @@ export default {
     // ShareNetwork
   },
   async mounted () {
-    this.articulos = (await Articulos.ObtenerArticulosPrincipal()).data
+    // this.articulos = (await Articulos.ObtenerArticulosPrincipal()).data
   },
   data () {
     return {
-      articulos: []
+      // articulos: []
     }
   }
 }
