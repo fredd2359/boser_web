@@ -4,7 +4,7 @@ var path = require('path')
 export default {
   ObtenerArticulo (slug) {
     var cadena = 'object/' + slug + '?read_key=' + process.env.COSMIC_READ_KEY + '&props=slug,title,content,metadata'
-    return Api().get(path.join(process.env.COSMIC_SERVER + cadena))
+    return Api().get(path.join(process.env.COSMIC_SERVER, cadena))
       .then(res => {
         return {
           success: true,
@@ -52,6 +52,7 @@ export default {
         }
       })
       .catch(err => {
+        console.log(err)
         return {
           err: err,
           success: false,
