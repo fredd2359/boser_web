@@ -170,13 +170,16 @@ export default {
   async mounted () {
     this.links = (await Visuales.ObtenerLinks()).data
     this.imagenes = (await Visuales.CarouselImgs()).data
+    console.log('Resultado de imagenes en principal: ', this.imagenes)
     this.urlchido = this.links.links[0].ruta
     this.articulos = (await ArticulosService.ObtenerArticulosPrincipal()).data
   },
   data () {
     return {
       articulos: [],
-      imagenes: [{imagenes: {rutaweb: '222'}}],
+      imagenes: {
+        files: ''
+      },
       links: '',
       urlchido: '',
       servidor: process.env.VUE_APP_SERVER

@@ -3,6 +3,7 @@ var path = require('path')
 
 export default {
   CarouselImgs () {
+    console.log(process.env.VUE_APP_SERVER)
     return Api().get(path.join(process.env.VUE_APP_SERVER + '/api/imagenes'))
       .then(res => {
         return {
