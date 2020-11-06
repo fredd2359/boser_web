@@ -52,7 +52,7 @@ export default {
         }
       })
       .catch(err => {
-        console.log(err)
+        // console.log(err)
         return {
           err: err,
           success: false,
