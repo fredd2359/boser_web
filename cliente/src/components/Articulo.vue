@@ -124,7 +124,7 @@ import PageHeader from '@/components/Header.vue'
 import PageFoot from '@/components/Foot'
 import PageRedesSociales from '@/components/RedesSociales'
 import Articulos from '@/servicios/Articulos'
-import Cintillo from '@/components/cintillo'
+import Cintillo from '@/components/Cintillo'
 
 export default {
   name: 'Articulo',
