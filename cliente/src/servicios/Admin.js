@@ -1,15 +1,27 @@
 import Api from './Api'
 
 export default {
-  editarLink (link) {
+  editarLink (link, token) {
     const linkParsed = JSON.stringify(link)
-    return Api().post(process.env.VUE_APP_SERVER + '/api/links/editarLink', linkParsed)
-      .then(res => {
-        return res
-      })
-      .catch(err => {
-        return err
-      })
+    return Api().post(
+      // Ruta
+      process.env.VUE_APP_SERVER + '/api/links/editarLink',
+      //Body
+      linkParsed,
+      // Headers
+      {
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+    )
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      return err
+    })
   },
 
   subirImagen (imagen, token) {
