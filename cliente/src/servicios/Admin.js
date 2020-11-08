@@ -3,7 +3,7 @@ import Api from './Api'
 export default {
   editarLink (link) {
     const linkParsed = JSON.stringify(link)
-    return Api().post(process.env.VUE_APP_SERVER + '/api/links/editar', linkParsed)
+    return Api().post(process.env.VUE_APP_SERVER + '/api/links/editarLink', linkParsed)
       .then(res => {
         return res
       })
