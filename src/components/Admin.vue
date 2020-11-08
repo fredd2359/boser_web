@@ -193,7 +193,7 @@ export default {
       const response = await Admin.editarLink({
         _id: idLink,
         newruta: newRuta
-      })
+      }, this.$store.state.token)
       if (response.sucess) {
         return true
       }
