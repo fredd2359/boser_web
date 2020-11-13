@@ -6,7 +6,7 @@ export default {
     return Api().post(
       // Ruta
       process.env.VUE_APP_SERVER + '/api/links/editarLink',
-      //Body
+      // Body
       linkParsed,
       // Headers
       {
@@ -15,11 +15,9 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       }
-    )
-    .then(res => {
+    ).then(res => {
       return res
-    })
-    .catch(err => {
+    }).catch(err => {
       return err
     })
   },
