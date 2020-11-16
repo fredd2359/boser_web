@@ -2,23 +2,30 @@ import Api from './Api'
 
 export default {
   editarLink (link, token) {
-    const linkParsed = JSON.stringify(link)
     return Api().post(
       // Ruta
       process.env.VUE_APP_SERVER + '/api/links/editarLink',
+      // process.env.VUE_APP_SERVER + 'api/links/editarLink',
       // Body
-      linkParsed,
+      link,
       // Headers
       {
         headers: {
           'Authorization': token,
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'application/json'
         }
       }
     ).then(res => {
-      return res
+      return {
+        success: true,
+        data: res.data
+      }
     }).catch(err => {
-      return err
+      return {
+        success: false,
+        data: null,
+        err
+      }
     })
   },
 
@@ -27,6 +34,7 @@ export default {
     formData.append('memeImagen', imagen)
     return Api().post(
       // Ruta
+      // process.env.VUE_APP_SERVER + 'api/imagenes',
       process.env.VUE_APP_SERVER + '/api/imagenes',
       // Body
       formData,
@@ -54,6 +62,7 @@ export default {
   },
 
   eliminarImagen (linkId, token) {
+    // return Api().delete(process.env.VUE_APP_SERVER + 'api/imagenes/' + linkId, {
     return Api().delete(process.env.VUE_APP_SERVER + '/api/imagenes/' + linkId, {
       headers: {
         Authorization: token

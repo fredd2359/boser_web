@@ -45,6 +45,18 @@
               </v-row>
               <v-row>
                 <v-col block>
+                  <v-alert
+                    class="mt-2"
+                    type="success"
+                    :value="successalert"
+                    transition="scale-transition"
+                  >
+                    {{mensaje}}
+                  </v-alert>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col block>
                   <v-simple-table>
                     <template v-slot:default>
                       <thead>
@@ -82,19 +94,32 @@
           <v-expansion-panel>
             <v-expansion-panel-header>Links</v-expansion-panel-header>
             <v-expansion-panel-content>
+              <v-row>
+                <v-col block>
+                  <v-alert
+                    class="mt-2"
+                    type="success"
+                    :value="successalertlink"
+                    transition="scale-transition"
+                  >
+                    {{mensaje}}
+                  </v-alert>
+                </v-col>
+              </v-row>
               <!-- Aqui se pondrá la modificiación de links de la pagina principal  -->
               <v-row>
-                <v-col class="col-12" v-for="link in links.links" :key="link.ruta">
+                <v-col class="col-12" v-for="enlace in links.links" :key="enlace._id">
                   <form>
-                    <v-row v-model="link._id" class="justify-center">
+                    <!-- <v-row v-model="enlace._id" class="justify-center"> -->
+                    <v-row class="justify-center">
                       <v-text-field
-                        v-model="link.ruta"
+                        v-model="enlace.ruta"
                         label="Teclear Link"
                       ></v-text-field>
                       <v-btn
                         color="primary"
                         dark
-                        @click="editarLink(link._id)"
+                        @click="editarLink(enlace, enlace.ruta)"
                       >
                         <i class="far fa-edit"></i>
                       </v-btn>
@@ -156,7 +181,13 @@ export default {
     links: [{
       _id: '123',
       ruta: 22
-    }]
+    }],
+    successalert: false,
+    successalertlink: false,
+    erroralert: false,
+    erroralertlink: false,
+    mensajeError: '',
+    mensaje: ''
     // userRules: [
     //   v => !!v || 'Usuario es requerido'
     // ],
@@ -173,7 +204,7 @@ export default {
         // o asignarle la primer imagen de una vez? yes
         return false
       }
-      // TODO: implementar mensajes de error al eliminar
+      // TODO: Probar mensajes de error al eliminar
       const response = (await Admin.eliminarImagen(this._idImagenSel, this.$store.state.token))
       if (response.status === 201) {
         if (this.imagenes.files.length >= 1) {
@@ -184,19 +215,30 @@ export default {
             this.imagenSel = this.imagenes.files[0].metadata.url
           }
         }
+        this.mensaje = 'Se ha eliminado la imagen!'
+        this.successalert = true
+        this.hide_successalert()
         return true
       }
-      // TODO: Implementar mensaje de error al borrar
+      this.mensajeError = 'Error, algo ha salido mal, contacte al administrador'
+      this.erroralert = true
+      this.hide_erroralert()
       return false
     },
-    async editarLink (idLink, newRuta) {
-      const response = await Admin.editarLink({
-        _id: idLink,
+    async editarLink (link, newRuta) {
+      const response = (await Admin.editarLink({
+        _id: link._id,
         ruta: newRuta
-      }, this.$store.state.token)
-      if (response.sucess) {
+      }, this.$store.state.token))
+      if (response.success) {
+        this.mensaje = 'Se ha modificado el Link!'
+        this.successalertlink = true
+        this.hide_successalert()
         return true
       }
+      this.mensajeError = 'Error, algo ha salido mal, contacte al administrador'
+      this.erroralert = true
+      this.hide_erroralert()
       return false
       // Llamar a base de datos para cambio de link
 
@@ -210,16 +252,31 @@ export default {
       // // Llama a back para subir imagen
       const response = (await Admin.subirImagen(this.imagenSubir, this.$store.state.token))
       if (response.success) {
-        // TODO: implementar mensaje de OK
         this.imagenes = []
         this.imagenes = (await Visuales.CarouselImgs()).data
+        this.successalert = !this.successalert
+        this.mensaje = 'La imagen se ha sigo guardada correctamente'
+        this.hide_successalert()
         return true
       }
+      this.erroralert = true
+      this.mensajeError = 'Error, algo ha salido mal, contacte al adminsitrador'
+      this.hide_erroralert()
       return false
-      // return {
-      //   msg: 'Imagen guardada',
-      //   success: true
-      // }
+    },
+    // TODO: automatizar eventos de hide
+    hide_successalert: function (event) {
+      // `event` is the native DOM event
+      window.setInterval(() => {
+        this.successalert = false
+        this.successalertlink = false
+      }, 7000)
+    },
+    hide_erroralert: function (event) {
+      window.setInterval(() => {
+        this.erroralert = false
+        this.erroralertlink = false
+      }, 7000)
     }
   },
   async mounted () {
