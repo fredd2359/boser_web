@@ -17,7 +17,7 @@
     "build-dev": "webpack --config=build/webpack.dev.conf.js"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "copy-webpack-plugin": "^4.0.1",
     "express": "^4.17.1",
     "friendly-errors-webpack-plugin": "^1.6.1",
