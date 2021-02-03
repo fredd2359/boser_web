@@ -10,7 +10,7 @@ const Usuario = require('../../models/usuario')
 
 //Obtiene todos los usuarios
 router.get('/',check_auth, (req,res, next) => {
-    console.log('entra a metodo');
+    // console.log('entra a metodo');
     Usuario.find().exec().then(
         docs => {
             const response = {
@@ -87,8 +87,8 @@ router.post('/login', (req,res,next) => {
     Usuario.find({user : req.body.user})
         .exec()
         .then( usuario => {
-            console.log("usuario:");
-            console.log(usuario);
+            // console.log("usuario:");
+            // console.log(usuario);
             if (usuario.length < 1){
                 return res.status(401).json({
                     message : "El nombre del usuario o la contraseña no son correctos."
