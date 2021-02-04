@@ -2,10 +2,11 @@ const express  = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const logger = require('./middleware/logger');
-const assert = require('assert');
+// const assert = require('assert');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const enforce = require('express-sslify')
 // Cambios 2/3/21
 // var fs = require('fs');
 // var http = require('http');
@@ -59,6 +60,10 @@ app.use('/api/imagenes',require('./routes/api/imagenes'));
 app.use('/api/links',require('./routes/api/links'));
 
 //Pubic directory
+// Cambios 2/3/21
+if (app.get("env") === "production") {
+    app.use(enforce.HTTPS({trustProtoHeader: true}))
+}
 app.use('/', express.static(path.join(__dirname,'public')));
 
 const PORT = process.env.PORT || 5000;
