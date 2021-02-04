@@ -30,7 +30,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // var credentials = {key: privateKey, cert: certificate};
 // Terminan cambios
-
 const app = express();
 //Se activa cors
  app.use(function(req, res, next) {
