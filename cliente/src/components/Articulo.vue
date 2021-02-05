@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-row>
+    <!-- <v-row>
       <v-col class="pa-0">
         <page-header/>
       </v-col>
-    </v-row>
+    </v-row> -->
     <v-row>
       <v-col
         :sm = 12
@@ -110,18 +110,18 @@
         <page-redes-sociales class="width: 100%" />
       </v-col>
     </v-row>
-    <v-row>
+    <!-- <v-row>
       <v-col class="pr-0 pl-0 pb-0">
         <page-foot class="width: 100%" />
       </v-col>
-    </v-row>
+    </v-row> -->
   </div>
 </template>
 
 <script>
 // import Visuales from '@/servicios/Visuales'
-import PageHeader from '@/components/Header.vue'
-import PageFoot from '@/components/Foot'
+// import PageHeader from '@/components/Header.vue'
+// import PageFoot from '@/components/Foot'
 import PageRedesSociales from '@/components/RedesSociales'
 import Articulos from '@/servicios/Articulos'
 import Cintillo from '@/components/Cintillo'
@@ -129,8 +129,8 @@ import Cintillo from '@/components/Cintillo'
 export default {
   name: 'Articulo',
   components: {
-    PageHeader,
-    PageFoot,
+    // PageHeader,
+    // PageFoot,
     PageRedesSociales,
     Cintillo
   },
@@ -151,6 +151,8 @@ export default {
     // console.log(window.location.pathname)
     // Imprime http://www..../articulo/asda-asd
     // console.log(location.toString())
+    // Imprime 192.168.0.21:8080
+    // console.log(location.host)
   },
   data () {
     return {
@@ -188,9 +190,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.titulo {
-  font-family: 'Paytone One', sans-serif !important;
-  /* font-weight: bold; */
-  /* font-size: 48px; */
-}
 </style>

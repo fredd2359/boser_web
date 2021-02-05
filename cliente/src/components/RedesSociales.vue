@@ -7,7 +7,6 @@
       align= "center"
     >
       <v-col
-        :col = 12
       >
         <div
           class="fb-page left"
@@ -58,7 +57,7 @@
 </template>
 <script>
 import InstagramEmbed from 'vue-instagram-embed'
-import RedesSocialesService from '@/servicios/RedesSociales'
+// import RedesSocialesService from '@/servicios/RedesSociales'
 
 export default {
   name: 'RedesSociales',
@@ -81,35 +80,42 @@ export default {
         }
         switch (this.$vuetify.breakpoint.name) {
           case 'xs': {
-            t.facebook.width = 300
+            // 320 x 240
+            // 512 x 384
+            t.facebook.width = 270
             t.facebook.height = 500
             t.instagram = 300
             t.twitter.width = 300
             break
           }
           case 'sm': {
-            t.facebook.width = 350
+            // 640 x 480
+            // 800 x 600
+            t.facebook.width = 280
             t.facebook.height = 500
             t.instagram = 400
             t.twitter.width = 350
             break
           }
           case 'md': {
-            t.facebook.width = 350
+            // 1024 x 768
+            t.facebook.width = 290
             t.facebook.height = 500
             t.instagram = 350
             t.twitter.width = 350
             break
           }
           case 'lg': {
-            t.facebook.width = 340
+            // 1280 x 720
+            t.facebook.width = 300
             t.facebook.height = 500
             t.instagram = 400
             t.twitter.width = 450
             break
           }
           case 'xl': {
-            t.facebook.width = 450
+            // 1920 x 1080
+            t.facebook.width = 310
             t.facebook.height = 500
             t.instagram = 450
             t.twitter.width = 450
@@ -121,7 +127,7 @@ export default {
     }
   },
   async mounted () {
-    this.InstaToken = (await RedesSocialesService.TAccess()).data.access_token
+    // this.InstaToken = (await RedesSocialesService.TAccess()).data.access_token
   },
   data () {
     return {

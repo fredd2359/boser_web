@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <v-row>
+  <!-- <div> -->
+  <v-card>
+    <!-- <v-row>
       <v-col class="pa-0">
-        <page-header/>
+        <page-header class="width: 100% lenght: 100%"/>
       </v-col>
-    </v-row>
+    </v-row> -->
     <v-row>
       <v-col
         :sm = 12
@@ -80,18 +81,19 @@
         <page-redes-sociales class="width: 100% lenght: 100%" />
       </v-col>
     </v-row>
-    <v-row>
+    <!-- <v-row>
       <v-col class="pr-0 pl-0 pb-0">
         <page-foot class="width: 100%" />
       </v-col>
-    </v-row>
-  </div>
+    </v-row> -->
+  </v-card>
+  <!-- </div> -->
 </template>
 
 <script>
-import PageHeader from '@/components/Header.vue'
+// import PageHeader from '@/components/Header.vue'
 import VueYouTubeEmbed from 'vue-youtube-embed'
-import PageFoot from '@/components/Foot'
+// import PageFoot from '@/components/Foot'
 import PageRedesSociales from '@/components/RedesSociales'
 // import PageArticulos from '@/components/Articulos'
 import PageArticulos from '@/components/Articulos'
@@ -101,9 +103,9 @@ import Visuales from '@/servicios/Visuales'
 export default {
   name: 'Principal',
   components: {
-    PageHeader,
+    // PageHeader,
     VueYouTubeEmbed,
-    PageFoot,
+    // PageFoot,
     PageRedesSociales,
     // PageArticulos,
     PageArticulos
@@ -128,36 +130,43 @@ export default {
         }
         switch (this.$vuetify.breakpoint.name) {
           case 'xs': {
+            // 320 x 240
+            // 512 x 384
             t.carousel = 200
-            t.parallax = 690
+            t.parallax = 310
             t.youtube.height = 290
             t.youtube.width = 300
             break
           }
           case 'sm': {
+            // 640 x 480
+            // 800 x 600
             t.carousel = 300
-            t.parallax = 720
+            t.parallax = 380
             t.youtube.height = 360
             t.youtube.width = 400
             break
           }
           case 'md': {
+            // 1024 x 768
             t.carousel = 350
-            t.parallax = 500
+            t.parallax = 370
             t.youtube.height = 350
             t.youtube.width = 480
             break
           }
           case 'lg': {
+            // 1280 x 720
             t.carousel = 400
-            t.parallax = 500
+            t.parallax = 420
             t.youtube.height = 400
             t.youtube.width = 650
             break
           }
           case 'xl': {
+            // 1920 x 1080
             t.carousel = 500
-            t.parallax = 500
+            t.parallax = 470
             t.youtube.height = 450
             t.youtube.width = 810
             break

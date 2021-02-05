@@ -1,17 +1,11 @@
 const express  = require('express');
 const path = require('path');
-const exphbs = require('express-handlebars');
 const logger = require('./middleware/logger');
 // const assert = require('assert');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const enforce = require('express-sslify')
-// Cambios 2/3/21
-// var fs = require('fs');
-// var http = require('http');
-// var https = require('https');
-// Terminan cambios
 
 require ('dotenv').config();
 
@@ -23,13 +17,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 })
 .then(() => console.log( 'Database Connected' ))
      .catch(err => console.log( err ));
-
-//Cambios 2/3/21
-// var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
-// var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
-
-// var credentials = {key: privateKey, cert: certificate};
-// Terminan cambios
 
 const app = express();
 //Se activa cors
@@ -62,18 +49,11 @@ app.use('/api/links',require('./routes/api/links'));
 //Pubic directory
 // Cambios 2/3/21
 if (app.get("env") === "production") {
-    app.use(enforce.HTTPS({trustProtoHeader: true}))
+    app.use(enforce.HTTPS({trustProtoHeader: true}));
 }
 app.use('/', express.static(path.join(__dirname,'public')));
 
 const PORT = process.env.PORT || 5000;
-
-// Cambios 2/3/21
-// var httpServer = http.createServer(app);
-// var httpsServer = https.createServer(credentials, app);
-
-// httpServer.listen(8080);
-// httpsServer.listen(8443);
 
 app.listen(PORT, () => {
     console.log('Server started on port: ' + PORT);
