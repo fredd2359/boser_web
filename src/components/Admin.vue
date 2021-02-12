@@ -281,9 +281,10 @@ export default {
   },
   async mounted () {
     if (!this.$store.state.isUserLoggedIn) {
-      this.$router.push({
-        name: 'Login'
-      })
+      window.location.href = `${location.origin}/login`
+      // this.$router.push({
+      //   name: 'Login'
+      // })
     }
     this.imagenes = (await Visuales.CarouselImgs()).data
     this.links = (await Visuales.ObtenerLinks()).data

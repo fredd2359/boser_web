@@ -134,9 +134,10 @@ export default {
   },
   async mounted () {
     if (this.$store.state.isUserLoggedIn) {
-      this.$router.push({
-        name: 'admin'
-      })
+      window.location.href = `${location.origin}/admin`
+      // this.$router.push({
+      //   name: 'admin'
+      // })
     }
   }
 }

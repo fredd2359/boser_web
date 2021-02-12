@@ -97,9 +97,8 @@ export default {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
       sessionStorage.clear()
-      console.log(this.$store.state.isUserLoggedIn, 'cierra sesion el usuario')
       // this.$router.push({
-      //   name: 'Login'
+      //   name: 'Index'
       // })
       window.location.href = `${location.origin}/`
     },
@@ -119,7 +118,6 @@ export default {
     }
   },
   async mounted () {
-    console.log(this.$store.state.isUserLoggedIn, 'entra amounted')
     switch (window.location.pathname) {
       case ('/store'): {
         this.selectedItem = 1
@@ -130,8 +128,6 @@ export default {
         break
       }
     }
-    // if (window.location.pathname==='store') {
-    // }
   },
   data () {
     return {
