@@ -64,7 +64,6 @@ export default {
   async mounted () {
     // this.links = (await Visuales.ObtenerLinks()).data
     this.productos = (await ProductosService.ObtenerProductos())
-    console.log(this.productos)
     if (this.productos.success) {
       this.load = false
     }
