@@ -115,7 +115,8 @@ export default {
         this.mostrarAlert = false
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', this.user)
-        this.$router.push('admin')
+        // this.$router.push('admin')
+        window.location.href = `${location.origin}/admin`
       } else {
         this.mostrarAlert = true
         this.mensaje = response.data.message

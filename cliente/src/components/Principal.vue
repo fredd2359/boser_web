@@ -91,11 +91,8 @@
 </template>
 
 <script>
-// import PageHeader from '@/components/Header.vue'
 import VueYouTubeEmbed from 'vue-youtube-embed'
-// import PageFoot from '@/components/Foot'
 import PageRedesSociales from '@/components/RedesSociales'
-// import PageArticulos from '@/components/Articulos'
 import PageArticulos from '@/components/Articulos'
 import ArticulosService from '@/servicios/Articulos'
 import Visuales from '@/servicios/Visuales'
@@ -103,11 +100,8 @@ import Visuales from '@/servicios/Visuales'
 export default {
   name: 'Principal',
   components: {
-    // PageHeader,
     VueYouTubeEmbed,
-    // PageFoot,
     PageRedesSociales,
-    // PageArticulos,
     PageArticulos
   },
   methods: {
@@ -179,7 +173,6 @@ export default {
   async mounted () {
     this.links = (await Visuales.ObtenerLinks()).data
     this.imagenes = (await Visuales.CarouselImgs()).data
-    // console.log('Resultado de imagenes en principal: ', this.imagenes)
     this.urlchido = this.links.links[0].ruta
     this.articulos = (await ArticulosService.ObtenerArticulosPrincipal()).data
   },
