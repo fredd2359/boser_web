@@ -1,6 +1,6 @@
 <template>
   <div>
-    <page-header class="width: 100%" />
+    <!-- <page-header class="width: 100%" /> -->
     <v-container column>
       <v-row style='margin-top: 5%'>
         <v-expansion-panels

@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: '192.168.0.21',
+    host: '192.168.1.69',
     port: 8080,
     autoOpenBrowser: false,
     errorOverlay: true,

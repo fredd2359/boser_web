@@ -74,7 +74,7 @@ export default {
   height: auto;
 }
 .img1{
-    width: 130px;
+    width: 122px;
     position: absolute;
     margin-top: -25px;
     margin-left: 36px;
