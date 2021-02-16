@@ -137,7 +137,7 @@ export default {
       selectedItem: 0,
       secciones: [
         {text: 'Inicio', icon: 'mdi-home', ruta: '/', needToken: 0},
-        {text: 'Tienda', icon: 'mdi-store', ruta: 'store', needToken: 0},
+        // {text: 'Tienda', icon: 'mdi-store', ruta: 'store', needToken: 0},
         {text: 'Administrador', icon: 'mdi-soccer', ruta: 'admin', needToken: 1}
       ]
     }
