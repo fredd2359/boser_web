@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <page-header class="width: 100%" /> -->
     <v-container column>
       <v-row style='margin-top: 5%'>
         <v-expansion-panels
@@ -13,8 +12,6 @@
           <v-expansion-panel>
             <v-expansion-panel-header>Imágenes</v-expansion-panel-header>
             <v-expansion-panel-content>
-              <!-- Aqui se pondrá la lista de las 10 imagenes y  -->
-              <!-- :src="require(`${card}`)" -->
               <v-row class="d-flex justify-center">
                 <v-col
                   :cols= 6
@@ -35,7 +32,6 @@
                         color="pink"
                         @click="borrarImagen()"
                       >
-                        <!-- <v-icon dark>mdi-heart</v-icon> -->
                         <i class="far fa-trash-alt"></i>
                       </v-btn>
                     </v-card-title>
@@ -106,11 +102,10 @@
                   </v-alert>
                 </v-col>
               </v-row>
-              <!-- Aqui se pondrá la modificiación de links de la pagina principal  -->
+              <!-- Seccion de modificación de links  -->
               <v-row>
                 <v-col class="col-12" v-for="enlace in links.links" :key="enlace._id">
                   <form>
-                    <!-- <v-row v-model="enlace._id" class="justify-center"> -->
                     <v-row class="justify-center">
                       <v-text-field
                         v-model="enlace.ruta"
@@ -131,29 +126,6 @@
           </v-expansion-panel>
         </v-expansion-panels>
       </v-row>
-      <!-- <v-row>
-        <v-card>
-          <v-img
-            :src="urlImg"
-            class="white--text align-end"
-            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            height="200px"
-          >
-          <v-card-title class="justify-end">
-            <v-btn
-              class="mx-2"
-              fab
-              dark
-              small
-              color="pink"
-              @click="borrarImagen"
-            >
-              <i class="far fa-trash-alt"></i>
-            </v-btn>
-          </v-card-title>
-          </v-img>
-        </v-card>
-      </v-row> -->
     </v-container>
   </div>
 </template>
@@ -173,7 +145,6 @@ export default {
     imagenSel: '',
     _idImagenSel: 0,
     imagenSubir: [],
-    urlImg: 'http://localhost:5000/imagenes/estadio.jpg',
     imagenes: [{
       _id: 'asd',
       rutaWeb: 'http://localhost:5000/imagenes/estadio.jpg'
@@ -188,16 +159,10 @@ export default {
     erroralertlink: false,
     mensajeError: '',
     mensaje: ''
-    // userRules: [
-    //   v => !!v || 'Usuario es requerido'
-    // ],
-    // passRules: [
-    //   v => !!v || 'Contaseña es requerida'
-    // ]
   }),
   methods: {
     async borrarImagen () {
-      // Código lógico para el borrado de imagen
+      // Código para el borrado lógico de imagen
       // Primero irá al servidor a borrarla y despues si todo sale bien se borra en el cliente
       if (this._idImagenSel === undefined || this._idImagenSel === 0) {
         // TODO: Implementar mensaje de error para cuando no manda nada
@@ -226,6 +191,7 @@ export default {
       return false
     },
     async editarLink (link, newRuta) {
+      // Llamar a base de datos para cambio de link
       const response = (await Admin.editarLink({
         _id: link._id,
         ruta: newRuta
@@ -240,9 +206,6 @@ export default {
       this.erroralert = true
       this.hide_erroralert()
       return false
-      // Llamar a base de datos para cambio de link
-
-      // Cuando se obtenga la respuesta se actuliza link en posision que se mando modficiar
     },
     async cambiarImagen (imagen) {
       this.imagenSel = imagen.metadata.url.toString()
@@ -281,10 +244,8 @@ export default {
   },
   async mounted () {
     if (!this.$store.state.isUserLoggedIn) {
+      // Si no está autenticado se redirige al login
       window.location.href = `${location.origin}/login`
-      // this.$router.push({
-      //   name: 'Login'
-      // })
     }
     this.imagenes = (await Visuales.CarouselImgs()).data
     this.links = (await Visuales.ObtenerLinks()).data

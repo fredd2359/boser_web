@@ -46,18 +46,6 @@
             >
             </v-card-title>
           </v-img>
-          <!-- <v-row
-            class="fill-height"
-            align="center"
-            justify="center"
-          >
-            <v-scale-transition>
-              <v-icon
-                v-if="active"
-                color="white"
-              ></v-icon>
-            </v-scale-transition>
-          </v-row> -->
         </v-card>
       </v-slide-item>
     </v-slide-group>
