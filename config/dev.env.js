@@ -5,7 +5,7 @@ const prodEnv = require('./prod.env')
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   PORT: '"8081"',
-  host: '"192.168.1.69"', // TODO: Cambiar
+  host: '"192.168.1.67"', // TODO: Cambiar
   VUE_APP_SERVER: '"https://salseofutbolero-server.herokuapp.com"',
   FACEBOOK_APP: '"2824909654304731"',
   FB_GRAPH_Link: '"https://graph.facebook.com/oauth/access_token"',

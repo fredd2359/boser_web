@@ -1,38 +1,38 @@
 <template>
-    <div
-        style="width:100%"
+  <div
+    style="width:100%"
+  >
+    <v-footer
+      dark
+      padless
     >
-        <v-footer
-            dark
-            padless
-        >
-            <v-card
-                flat
-                tile
-                style="width:100%"
-                class="blue-grey darken-4 white--text text-center"
-            >
-                <v-card-text>
-                    <v-btn
-                        v-for="icon in icons"
-                        :key="icon.key"
-                        :class='"mx-4 " + icon.color +"--text"'
-                        icon
-                        @click="redireccion(icon.url)"
-                    >
-                        <v-icon size="24px">{{ icon.tipoIcono }}</v-icon>
-                    </v-btn>
-                </v-card-text>
+      <v-card
+        flat
+        tile
+        style="width:100%"
+        class="blue-grey darken-4 white--text text-center"
+      >
+        <v-card-text>
+          <v-btn
+            v-for="icon in icons"
+            :key="icon.key"
+            :class='"mx-4 " + icon.color +"--text"'
+            icon
+            @click="redireccion(icon.url)"
+          >
+            <v-icon size="24px">{{ icon.tipoIcono }}</v-icon>
+          </v-btn>
+        </v-card-text>
         <v-card-text class="white--text pt-0">
-            Cada que rueda el balón va dejando historia, yo te la puedo contar. Síguenos en todas Nuestras Redes Sociales
+          Cada que rueda el balón va dejando historia, yo te la puedo contar. Síguenos en todas Nuestras Redes Sociales
         </v-card-text>
 
         <v-divider></v-divider>
 
         <v-card-text class="white--text">
-            El Universo de Boser es Powered By Izk Producciones, Boser Salseo Futbolero (En proceso de Registro ante IMPI 2020)
+          El Universo de Boser es Powered By Izk Producciones, Boser Salseo Futbolero (En proceso de Registro ante IMPI 2020)
         </v-card-text>
-        </v-card>
+      </v-card>
     </v-footer>
   </div>
 </template>

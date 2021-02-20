@@ -2,43 +2,57 @@
   <v-card
     light
     :loading="load"
-    tile
-    class="ma-2"
   >
-      <v-card-title
-        class="text-h4"
-      >
-        Productos
-      </v-card-title>
+    <v-card-title
+      class="text-h4"
+    >
+      Tienda Boser
+    </v-card-title>
+    <v-card
+      light
+      flat
+      class="ma-2 d-flex flex-wrap justify-center"
+    >
       <!-- <v-divider></v-divider> -->
-      <v-hover v-slot="{hover}">
-        <v-card
-          light
-          :elevation="hover ? 12 : 2"
-          :class="{ 'on-hover': hover }"
-          min-width="210"
-          max-width="310"
-          v-for="producto in productos.data.objects"
-          :key="producto._id"
-        >
-          <v-img
-            :src="producto.metadata.imagen.url"
-            height="200px"
-          ></v-img>
-          <v-card-title
-            class="text-h4"
-            v-text='"$" + producto.metadata.precio'
-            style="max-width: 310px;"
+      <v-card
+        v-for="(producto) in productos.data.objects"
+        :key="producto._id"
+        flat
+        class="pointer"
+        tile
+        elevation="0"
+      >
+        <v-hover v-slot="{hover}">
+          <v-card
+            light
+            :elevation="hover ? 12 : 2"
+            :class="{ 'on-hover': hover} "
+            class="ma-2"
+            min-width="190"
+            max-width="250"
+            @click="navegarMercadoLibre(producto.metadata.link_mercadolibre)"
           >
-          </v-card-title>
+            <v-img
+              :src="producto.metadata.imagen.url"
+              contain
+              height="200px"
+            ></v-img>
+            <v-card-title
+              class="text-h4"
+              v-text='"$" + producto.metadata.precio'
+              style="max-width: 310px;"
+            >
+            </v-card-title>
 
-          <v-card-subtitle
-            class="left text-h5"
-            v-text="producto.metadata.nombre"
-          >
-          </v-card-subtitle>
-        </v-card>
-      </v-hover>
+            <v-card-subtitle
+              class="left text-h5"
+              v-text="producto.metadata.nombre"
+            >
+            </v-card-subtitle>
+          </v-card>
+        </v-hover>
+      </v-card>
+    </v-card>
   </v-card>
 </template>
 
@@ -53,16 +67,16 @@ export default {
     PageHeader
   },
   methods: {
+    selectIndex (Index) {
+      this.ItemIndex = Index
+    },
+    navegarMercadoLibre (ruta) {
+      window.open(ruta, '_blank')
+    }
   },
   computed: {
-    // source: {
-    // get: function () {
-    //   return this.$youtube.getIdFromURL(`${window.location.protocol}//www.youtube.com/watch?v=` + this.urlchido)
-    // }
-    // }
   },
   async mounted () {
-    // this.links = (await Visuales.ObtenerLinks()).data
     this.productos = (await ProductosService.ObtenerProductos())
     if (this.productos.success) {
       this.load = false
@@ -71,7 +85,8 @@ export default {
   data () {
     return {
       load: true,
-      productos: {}
+      productos: {},
+      ItemIndex: null
     }
   }
 }

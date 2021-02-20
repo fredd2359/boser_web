@@ -13,32 +13,24 @@
         :lg = 9
         class="pr-0"
       >
-        <v-row class="justify-center">
-          <v-col
-            :cols = 10
+        <v-carousel
+          :height="tamaños.carousel"
+          cycle
+          hide-delimiter-background
+          interval=8000
+        >
+          <v-carousel-item
+            reverse-transition="fade-transition"
+            transition="fade-transition"
+            v-for="(imagen, i) in imagenes.files"
+            :key="i"
           >
-            <v-carousel
-              cycle
-              :height="tamaños.carousel"
-              hide-delimiter-background
-              interval=8000
-
+            <img
+              :src="imagen.metadata.url"
+              style="height:100%;"
             >
-              <v-carousel-item
-                reverse-transition="fade-transition"
-                transition="fade-transition"
-                v-for="(imagen, i) in imagenes.files"
-                :key="i"
-                height="100%"
-              >
-                <img
-                  :src="imagen.metadata.url"
-                  style="height:100%;"
-                >
-              </v-carousel-item>
-            </v-carousel>
-          </v-col>
-        </v-row>
+          </v-carousel-item>
+        </v-carousel>
         <v-parallax
           :src ='servidor + "/imagenes/Fondovideo.jpeg"'
           :height="tamaños.parallax"
@@ -64,7 +56,7 @@
         >
           <v-card
             outlined
-            class="ml-1 mr-1 mt-3 mb-3"
+            class="ml-3 mr-3 mt-3 mb-3"
             v-for="articulo in articulos.objects"
             :key="articulo._id"
           >

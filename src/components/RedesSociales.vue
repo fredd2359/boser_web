@@ -9,7 +9,7 @@
       <v-col
       >
         <div
-          class="fb-page left"
+          class="fb-page"
           data-href="https://www.facebook.com/BoserSalseoFutboleroOficial/"
           data-tabs="timeline"
           :data-width='tamaños.facebook.width'
@@ -32,32 +32,32 @@
         </div>
       </v-col>
     </v-row>
-    <v-row
+        <!-- TODO: investigar como poner instagram de nuevo -->
+    <!-- <v-row
      align= "center"
     >
       <v-col
         :col = 12
-      >
+      > -->
           <!-- :url="'https://www.instagram.com/p/B5_VkYmp1EK/?utm_source=ig_embed&amp;utm_campaign=loading'" -->
           <!-- :url="'https://www.instagram.com/p/CGtxBs0pS6X/&access_token=' + InstaToken" -->
-        <instagram-embed
+        <!-- <instagram-embed
           :url="'https://graph.facebook.com/v8.0/instagram_oembed?url=https://www.instagram.com/p/CGtxBs0pS6X/&access_token=' + InstaToken"
           :max-width=500
-        />
-      </v-col>
-    </v-row>
+        /> -->
+      <!-- </v-col>
+    </v-row> -->
     <v-row>
       <v-col
         :col = 12
       >
-        <a class="twitter-timeline" href="https://twitter.com/bosersalseo?ref_src=twsrc%5Etfw" :data-width="tamaños.twitter.width" data-tweet-limit="3">Tweets by bosersalseo</a>
+        <a class="twitter-timeline" href="https://twitter.com/bosersalseo?ref_src=twsrc%5Etfw" :data-width="tamaños.twitter.width" data-tweet-limit="4">Tweets by bosersalseo</a>
       </v-col>
     </v-row>
   </v-card>
 </template>
 <script>
 import InstagramEmbed from 'vue-instagram-embed'
-// import RedesSocialesService from '@/servicios/RedesSociales'
 
 export default {
   name: 'RedesSociales',

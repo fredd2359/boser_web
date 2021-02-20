@@ -1,9 +1,6 @@
 <template>
-  <!-- <div> -->
   <v-card>
-    <!-- <page-header /> -->
     <v-img class="responsive" :src='servidor +"/imagenes/pportada.jpg"'>
-    <!-- <img class="responsive" :src='servidor +"/imagenes/pportada.jpg"'> -->
     </v-img>
     <v-app-bar
       dark
@@ -21,20 +18,50 @@
 
       <v-spacer></v-spacer>
 
-      <!-- <v-btn
-        v-if="$store.state.isUserLoggedIn"
-        @click="logout"
+        <!-- v-if="$store.state.isUserLoggedIn" -->
+      <v-btn
+        @click="redireccion('/')"
+        height="100%"
+        depressed
+        tile
+        v-if="!$store.state.isUserLoggedIn"
+        :class=" selectedItem == '0' ? 'activo' : ''"
       >
-          Cerrar Sesion
-      </v-btn> -->
-
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-icon
+          class="mr-2"
+        >mdi-home</v-icon>
+        Inicio
+      </v-btn>
+      <v-btn
+        @click="redireccion('store')"
+        height="100%"
+        depressed
+        tile
+        v-if="!$store.state.isUserLoggedIn"
+        :class=" selectedItem == '1' ? 'activo' : ''"
+      >
+        <v-icon
+          class="mr-2"
+        >mdi-store</v-icon>
+        Tienda
+      </v-btn>
+      <!-- <template v-slot:extension>
+        <v-tabs align-with-title>
+          <v-tab>Tab 1</v-tab>
+          <v-tab>Tab 2</v-tab>
+          <v-tab>Tab 3</v-tab>
+        </v-tabs>
+      </template> -->
+      <v-app-bar-nav-icon
+        v-if="$store.state.isUserLoggedIn"
+        @click.stop="drawer = !drawer"
+      >
+      </v-app-bar-nav-icon>
     </v-app-bar>
 
     <v-navigation-drawer
       v-model="drawer"
       app
-      bottom
       temporary
       dark
       right
@@ -51,12 +78,9 @@
       <v-list
         nav
       >
-          <!-- active-class="deep-purple--text text--accent-4" -->
-          <!-- color="primary" -->
         <v-list-item-group
           v-model="selectedItem"
         >
-            <!-- :href="seccion.ruta" -->
           <v-list-item
             v-for="(seccion, s) in secciones"
             :key="s"
@@ -68,14 +92,6 @@
             </v-list-item-icon>
             <v-list-item-title>{{seccion.text}}</v-list-item-title>
           </v-list-item>
-          <!-- <v-list-item
-            @click="redireccion('/admin')"
-          >
-            <v-list-item-icon>
-              <v-icon>mdi-soccer</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Administrador</v-list-item-title>
-          </v-list-item> -->
         </v-list-item-group>
       </v-list>
       <v-spacer></v-spacer>
@@ -97,20 +113,17 @@ export default {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
       sessionStorage.clear()
-      // this.$router.push({
-      //   name: 'Index'
-      // })
       window.location.href = `${location.origin}/`
     },
     redireccion (slug) {
       if (slug === '/') {
         window.location.href = slug
       } else {
-        // this.$router.push({name: slug})
         window.location.href = `${location.origin}/${slug}`
       }
     },
     home () {
+      // INFO: Lineas para navegar pero no se adapta a esta aplicación
       // this.$router.push({
       //   name: 'index'
       // })
@@ -137,7 +150,7 @@ export default {
       selectedItem: 0,
       secciones: [
         {text: 'Inicio', icon: 'mdi-home', ruta: '/', needToken: 0},
-        // {text: 'Tienda', icon: 'mdi-store', ruta: 'store', needToken: 0},
+        {text: 'Tienda', icon: 'mdi-store', ruta: 'store', needToken: 0},
         {text: 'Administrador', icon: 'mdi-soccer', ruta: 'admin', needToken: 1}
       ]
     }
@@ -155,5 +168,9 @@ export default {
 }
 .hidden {
   visibility: hidden;
+}
+.activo{
+  background-color: #414545 !important
+  /* background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59)); */
 }
 </style>

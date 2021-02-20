@@ -2,11 +2,12 @@
   <v-container column>
     <v-flex class="container " style="margin-top: 10%">
       <div class="white elevation-2">
-        <!-- <h1>Pagina de login</h1>
-        <input type='text' name='user' v-model="user" placeholder='Usuario'>
-        <input type='password' name='password' v-model="password" placeholder='Contraseña'>
-        <button @click="login" >Iniciar Sesión</button> -->
-        <v-toolbar flat dense dark :src='servidor + "/imagenes/estadio.jpg"'>
+        <v-toolbar
+          flat
+          dense
+          dark
+          :src='servidor + "/imagenes/estadio.jpg"'
+        >
           <v-toolbar-title>Log In</v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
@@ -42,14 +43,6 @@
             >
               {{mensaje}}
             </v-alert>
-            <!-- TODO: Podría ser un recuerdame?  -->
-            <!-- <v-checkbox
-              v-model="checkbox"
-              :counter="10"
-              :rules="[v => !!v || 'You must agree to continue!']"
-              label="Do you agree?"
-              required
-            ></v-checkbox> -->
 
             <v-btn
               color="primary"
@@ -58,26 +51,6 @@
             >
               Iniciar Sesión
             </v-btn>
-            <!-- <v-col cols="12" class="mt-12">
-              <v-tooltip v-model="show">
-                <span>Programmatic tooltip</span>
-              </v-tooltip>
-            </v-col> -->
-            <!-- <v-btn
-              :disabled="!valid"
-              color="error"
-              class="mr-4"
-              @click="reset"
-            >
-              Reset Form
-            </v-btn>
-
-            <v-btn
-              color="warning"
-              @click="resetValidation"
-            >
-              Reset Validation
-            </v-btn> -->
           </v-form>
         </div>
       </div>
@@ -135,9 +108,6 @@ export default {
   async mounted () {
     if (this.$store.state.isUserLoggedIn) {
       window.location.href = `${location.origin}/admin`
-      // this.$router.push({
-      //   name: 'admin'
-      // })
     }
   }
 }
