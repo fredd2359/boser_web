@@ -36,7 +36,8 @@ const storage = new GridFsStorage({
                     filename: filename,
                     bucketName: 'imagenes',
                     metadata: {
-                        url: `${req.protocol}://${req.get('host')}/api/imagenes/${filename}`
+                        // url: `${req.protocol}://${req.get('host')}/api/imagenes/${filename}`
+                        url: `https://${req.get('host')}/api/imagenes/${filename}`
                     }
                 };
                 resolve(fileInfo);
