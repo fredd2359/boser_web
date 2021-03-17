@@ -125,6 +125,7 @@ export default {
     this.articulo = (await Articulos.ObtenerArticulo(this.$route.params.articuloId)).data.object
     this.exists = true
     this.urlActual = location.toString()
+    // console.log(this.articulo)
     // INFO: Imprime /articulo/algo-aqui
     // console.log(window.location.pathname)
     // Imprime http://www..../articulo/asda-asd
@@ -144,16 +145,19 @@ export default {
     }
   },
   metaInfo () {
+    // console.log(this.articulo)
+    // var imagenPath = this.articulo.metadata.portada.url.toString()
     return {
-      title: this.articulo.metadata.titulo,
+      title: 'SalseFutbolero | ' + this.articulo.metadata.titulo,
       meta: [
         {name: 'description', content: 'Esto es la descripcion del articulo'},
         {property: 'og:title', content: this.articulo.metadata.titulo},
-        {property: 'og:site_name', content: 'BoserSalseo'},
-        {property: 'og:type', content: 'website'},
-        {property: 'og:url', content: this.urlActual}
+        {property: 'og:site_name', content: 'SalseoFutbolero'},
+        {property: 'og:type', content: 'Article'},
+        {property: 'og:url', content: location.toString()},
+        {property: 'og:published_time', content: this.articulo.metadata.fecha_de_subida}
         // Descomentar en cuanto se pueda ver reflejado en el sitio en linea
-        // {property: 'og:image', content: 'https:/salseofutbolero-server.herokuapp.com/imagenes/pportada.jpg'}
+        // {property: 'og:image', content: imagenPath}
       ]
     }
   }
