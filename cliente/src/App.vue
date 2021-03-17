@@ -26,12 +26,12 @@ export default {
     return {
       title: 'BoserSalseoFutbolero - PaginaWebOficial',
       meta: [
-        // {name: 'description', content: 'Hola esto es la descripcion.'},
-        // {property: 'og:title', content: 'BoserWeb este es el titulo'},
-        // {property: 'og:site_name', content: 'BoserSalseo'},
+        {name: 'description', content: 'Sitio de humor y noticias del futból Mexicano!'},
+        {property: 'og:title', content: 'SalseoFutbolero | Sitio de humor y noticias del futból Mexicano!'},
+        {property: 'og:site_name', content: 'SalseoFutbolero'},
         // {property: 'og:url', content: 'http://www.bosersalseo.com/'},
-        // {property: 'og:type', content: 'website'},
-        // {name: 'robots', content: 'index,follow'}
+        {property: 'og:type', content: 'website'},
+        {name: 'robots', content: 'index,follow'}
       ]
     }
   },
