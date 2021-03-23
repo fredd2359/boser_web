@@ -36,6 +36,7 @@
               :src="producto.metadata.imagen.url"
               contain
               height="200px"
+              :alt="producto.title"
             ></v-img>
             <v-card-title
               class="text-h4"
@@ -89,6 +90,26 @@ export default {
       ItemIndex: null
     }
   }
+  // jsonld () {
+  //   return {
+  //     "@context": "https://schema.org",
+  //     "@type": "Product",
+  //     "aggregateRating": {
+  //       "@type": "AggregateRating",
+  //       "ratingValue": "3.5",
+  //       "reviewCount": "11"
+  //     },
+  //     "description": "0.7 cubic feet countertop microwave. Has six preset cooking categories and convenience features like Add-A-Minute and Child Lock.",
+  //     "name": "Kenmore White 17\" Microwave",
+  //     "image": "kenmore-microwave-17in.jpg",
+  //     "offers": {
+  //       "@type": "Offer",
+  //       "availability": "https://schema.org/InStock",
+  //       "price": "55.00",
+  //       "priceCurrency": "USD"
+  //     }
+  //   }
+  // }
 }
 </script>
 

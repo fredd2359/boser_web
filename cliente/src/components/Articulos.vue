@@ -11,6 +11,7 @@
         class="white--text align-end left pointer"
         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
         @click="getArticulo(articulo.slug)"
+        :alt="articulo.metadata.titulo"
       >
         <v-chip
           class="ma-2"

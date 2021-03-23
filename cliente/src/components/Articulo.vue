@@ -31,6 +31,7 @@
                     :src="articulo.metadata.portada.url"
                     height="400"
                     class="grey darken-4"
+                    :alt="articulo.metadata.titulo"
                   >
                     <!-- :aspect-ratio="16/4" -->
                   </v-img>
@@ -144,13 +145,23 @@ export default {
       urlActual: ''
     }
   },
+  jsonld () {
+    return {
+      '@context': 'https://schema.org/',
+      '@type': 'Article',
+      'name': this.articulo.metadata.titulo,
+      'description': this.articulo.content,
+      'editor': 'BoserSalseoFutbolero',
+      'contentReferenceTime': this.articulo.metadata.fecha_de_subida
+    }
+  },
   metaInfo () {
     // console.log(this.articulo)
     // var imagenPath = this.articulo.metadata.portada.url.toString()
     return {
       title: 'SalseFutbolero | ' + this.articulo.metadata.titulo,
       meta: [
-        {name: 'description', content: 'Esto es la descripcion del articulo'},
+        {name: 'description', content: this.articulo.content},
         {property: 'og:title', content: this.articulo.metadata.titulo},
         {property: 'og:site_name', content: 'SalseoFutbolero'},
         {property: 'og:type', content: 'Article'},
