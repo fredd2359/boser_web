@@ -25,10 +25,13 @@
             v-for="(imagen, i) in imagenes.files"
             :key="i"
           >
-            <img
+            <v-img
+              contain
+              :height="tamaños.carousel"
               :src="imagen.metadata.url"
-              style="height:100%;"
+              :alt="imagen.filename"
             >
+            </v-img>
           </v-carousel-item>
         </v-carousel>
         <v-parallax
@@ -167,6 +170,19 @@ export default {
     this.imagenes = (await Visuales.CarouselImgs()).data
     this.urlchido = this.links.links[0].ruta
     this.articulos = (await ArticulosService.ObtenerArticulosPrincipal()).data
+  },
+  jsonld () {
+    return {
+      '@context': 'http://schema.org/',
+      '@type': 'WebSite',
+      'url': 'https://salseofutbolero.com',
+      'text': 'SalseoFutbolero | Sitio de humor y noticias del futbol Mexicano',
+      'potentialAction': {
+        '@type': 'SearchAction',
+        'target': 'https://salseofutbolero.com/{query}',
+        'query': 'required'
+      }
+    }
   },
   data () {
     return {

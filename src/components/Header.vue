@@ -1,6 +1,10 @@
 <template>
   <v-card>
-    <v-img class="responsive" :src='servidor +"/imagenes/pportada.jpg"'>
+    <v-img
+      class="responsive"
+      :src='servidor +"/imagenes/pportada.jpg"'
+      alt="Portada SalseoFutbolero"
+    >
     </v-img>
     <v-app-bar
       dark
@@ -71,6 +75,7 @@
         <v-list-item>
           <v-img
             :src='servidor +"/imagenes/logoblanco.png"'
+            alt="Logo BoserSalseoFutbolero"
           >
           </v-img>
         </v-list-item>
