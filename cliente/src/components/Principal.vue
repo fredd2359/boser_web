@@ -226,7 +226,8 @@ export default {
             }
           }
         ]
-      })git
+      })
+      // Correccion
       document.querySelector('head').appendChild(el)
       // Metodo para asignar json-ld de manera dinamica pero no sirve.
       // Al momento de que google lo lee tiene conflicto con itemList con carácter adicional '\'
