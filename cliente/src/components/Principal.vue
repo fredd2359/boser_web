@@ -165,25 +165,119 @@ export default {
       }
     }
   },
-  async mounted () {
+  async created () {
     this.links = (await Visuales.ObtenerLinks()).data
     this.imagenes = (await Visuales.CarouselImgs()).data
     this.urlchido = this.links.links[0].ruta
     this.articulos = (await ArticulosService.ObtenerArticulosPrincipal()).data
-  },
-  jsonld () {
-    return {
-      '@context': 'http://schema.org/',
-      '@type': 'WebSite',
-      'url': 'https://salseofutbolero.com',
-      'text': 'SalseoFutbolero | Sitio de humor y noticias del futbol Mexicano',
-      'potentialAction': {
-        '@type': 'SearchAction',
-        'target': 'https://salseofutbolero.com/{query}',
-        'query': 'required'
+
+    if (this.articulos.objects.length > 0) {
+      var el = document.createElement('script')
+      el.type = 'application/ld+json'
+      var schema = {
+        '@context': 'http://schema.org/',
+        '@type': ['WebSite', 'ItemList'],
+        'url': 'https://salseofutbolero.com',
+        'text': 'SalseoFutbolero | Sitio de humor y noticias del futbol Mexicano',
+        'potentialAction': {
+          '@type': 'SearchAction',
+          'target': 'https://salseofutbolero.com/articulo/{q}',
+          'query-input': 'required name=q'
+        }
+        // 'itemListElement': [
+        //   {
+        //     '@type': 'ListItem',
+        //     'position': 1,
+        //     'item': {
+        //       'image': this.articulos.objects[0].metadata.portada.url,
+        //       'url': `https://www.salseofutbolero.com/articulo/${this.articulos.objects[0].slug}`
+        //     }
+        //   },
+        //   {
+        //     '@type': 'ListItem',
+        //     'position': 2,
+        //     'item': {
+        //       'image': this.articulos.objects[1].metadata.portada.url,
+        //       'url': `https://www.salseofutbolero.com/articulo/${this.articulos.objects[1].slug}`
+        //     }
+        //   },
+        //   {
+        //     '@type': 'ListItem',
+        //     'position': 3,
+        //     'item': {
+        //       'image': this.articulos.objects[2].metadata.portada.url,
+        //       'url': `https://www.salseofutbolero.com/articulo/${this.articulos.objects[2].slug}`
+        //     }
+        //   },
+        //   {
+        //     '@type': 'ListItem',
+        //     'position': 4,
+        //     'item': {
+        //       'image': this.articulos.objects[3].metadata.portada.url,
+        //       'url': `https://www.salseofutbolero.com/articulo/${this.articulos.objects[3].slug}`
+        //     }
+        //   },
+        //   {
+        //     '@type': 'ListItem',
+        //     'position': 5,
+        //     'item': {
+        //       'image': this.articulos.objects[4].metadata.portada.url,
+        //       'url': `https://www.salseofutbolero.com/articulo/${this.articulos.objects[4].slug}`
+        //     }
+        //   }
+        // ]
       }
+      var itemList = []
+      for (var i = 0; i <= this.articulos.objects.length - 1; i++) {
+        var str = JSON.stringify({'@type': 'ListItem',
+          'position': i + 1,
+          'item': {
+            'image': this.articulos.objects[i].metadata.portada.url,
+            'url': `https://www.salseofutbolero.com/articulo/${this.articulos.objects[i].slug}`
+          }
+        })
+        // Se crea arreglo de articulos en itemList
+        itemList.push(str)
+      }
+      // Se asignan los articulos en objeto itemListElement a schema
+      schema = {...schema, ...{'itemListElement': itemList}}
+      el.text = JSON.stringify(schema)
+      // Se incrusta el en tag head del DOM
+      document.querySelector('head').appendChild(el)
     }
   },
+  // INFO: Solo se puede implementar de esta forma si es que no se agararán datos de un api
+  // jsonld () {
+  //   return {
+  //     '@context': 'http://schema.org/',
+  //     '@type': ['WebSite', 'ItemList'],
+  //     'url': 'https://salseofutbolero.com',
+  //     'text': 'SalseoFutbolero | Sitio de humor y noticias del futbol Mexicano',
+  //     'potentialAction': {
+  //       '@type': 'SearchAction',
+  //       'target': 'https://salseofutbolero.com/articulo/{q}',
+  //       'query-input': 'required name=q'
+  //     },
+  //     'itemListElement': [
+  //       {
+  //         '@type': 'ListItem',
+  //         'position': 1,
+  //         'item': {
+  //           'image': 'algo',
+  //           'url': 'algo'
+  //         }
+  //       },
+  //       {
+  //         '@type': 'ListItem',
+  //         'position': 2,
+  //         'item': {
+  //           'image': 'algo',
+  //           'url': 'algo'
+  //         }
+  //       }
+  //     ]
+  //   }
+  // },
   data () {
     return {
       articulos: [],
